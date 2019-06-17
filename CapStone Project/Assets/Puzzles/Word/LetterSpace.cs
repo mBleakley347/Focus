@@ -6,23 +6,23 @@ public class LetterSpace : MonoBehaviour
 {
 
     public LetterClass letter;
-    [SerializeField] private LetterManager wordPlacement;
+    [SerializeField] private LetterManager wordManager;
     public int pos;
 
-    public void MoveLetterUp()
+    public void MoveLetterUp(LetterClass letterClass)
     {
-        int posTemp = pos - wordPlacement.pos;
+        int posTemp = pos + wordManager.pos;
         if (CheckLetterSpace(posTemp))
         {
-            wordPlacement.letters[posTemp] = letter;
-            letter.gameObject.transform.Translate(0, wordPlacement.gameObject.transform.position.y,0);
+            wordManager.letters[posTemp] = letter;
+            letter.gameObject.transform.Translate(0, wordManager.gameObject.transform.position.y,0);
             letter = null;
         }
     }
 
     public bool CheckLetterSpace(int posTemp)
     {
-        if (wordPlacement.letters[posTemp] == null)
+        if (wordManager.letters[posTemp] == null)
         {
             return true;
         }

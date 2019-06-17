@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class GearClass : MonoBehaviour
+public class GearClass : Interactable
 {
     public Vector3 onPosition;
     public Vector3 offPosition;
@@ -11,6 +11,21 @@ public class GearClass : MonoBehaviour
     public bool Constant;
     public GearClass[] parents;
     public Quaternion correctRotation;
+    
+
+    public Quaternion Completed
+    {
+        get { return transform.rotation; }
+        set
+        {
+            if (value != transform.rotation)
+            {
+                check(value==correctRotation);
+            }
+
+            transform.rotation = value;
+        }
+    }
 
     public void Change()
     {
@@ -24,5 +39,11 @@ public class GearClass : MonoBehaviour
     {
         if (!active) transform.transform.position = offPosition;
         if (active) transform.transform.position = onPosition;
+    }
+
+    public override bool Click()
+    {
+        Change();
+        return true;
     }
 }

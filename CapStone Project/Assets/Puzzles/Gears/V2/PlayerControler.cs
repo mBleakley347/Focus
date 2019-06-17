@@ -21,13 +21,9 @@ public class PlayerControler : MonoBehaviour
             RaycastHit hit;
 
             if (Physics.Raycast(ray, out hit, 100)){
-                GearClass gear = hit.collider.GetComponent<GearClass>();
-                GearControler controler = hit.collider.GetComponent<GearControler>();
-                if (gear != null) {
-                    gear.Change();
-                }
-                if (controler != null) {
-                    controler.GearRotateCheck();
+                Interactable pressable = hit.collider.GetComponent<Interactable>();
+                if (pressable != null) {
+                    pressable.Click();
                 }
             }
         }

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GearControler : MonoBehaviour
+public class GearControler : Interactable
 {
     public GearClass[] gears;
 
@@ -30,5 +30,12 @@ public class GearControler : MonoBehaviour
     private void RotateGear(GearClass gear)
     {
         gear.gameObject.transform.Rotate(0,0,45f);
+    }
+
+    public override bool Click()
+    {
+        GearRotateCheck();
+        return true;
+        
     }
 }
