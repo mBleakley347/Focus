@@ -19,5 +19,6 @@ public class SectionManager : MonoBehaviour
     public void UpdateCorrectPosition(bool correct)
     {
         AllCorrectPositions += correct ? 1 : -1;
+        if (AllCorrectPositions == elements.Length) print("complete");
     }
 }

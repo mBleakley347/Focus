@@ -30,12 +30,12 @@ public class GearControler : Interactable
     private void RotateGear(GearClass gear)
     {
         gear.gameObject.transform.Rotate(0,0,45f);
+        gear.Completed = gear.gameObject.transform.rotation;
     }
 
     public override bool Click()
     {
         GearRotateCheck();
         return true;
-        
     }
 }

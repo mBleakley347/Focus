@@ -20,9 +20,10 @@ public class GearClass : Interactable
         {
             if (value != transform.rotation)
             {
+                print("changed"+ transform.rotation+ this.gameObject.name);
                 check(value==correctRotation);
             }
-
+            
             transform.rotation = value;
         }
     }
