@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class PBManager : MonoBehaviour
 {
+   
     bool complete;
     public PuzzleManager[] puzzles;
-    
     private void Awake()
     {
         foreach (var VARIABLE in puzzles)
