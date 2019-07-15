@@ -27,6 +27,7 @@ public class PBManager : MonoBehaviour
             if (i == puzzles.Length - 1)
             {
                 complete = true;
+                Debug.Log("What?");
             }
                 
         }

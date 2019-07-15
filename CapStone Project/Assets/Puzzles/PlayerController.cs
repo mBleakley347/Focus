@@ -37,7 +37,14 @@ public class PlayerController : MonoBehaviour
                 pressable.Hold(cursorPosition);
             }
 
-        if (Input.GetMouseButtonUp(0)) pressable = null;
+        if (Input.GetMouseButtonUp(0))
+        {
+            if (pressable != null)
+            {
+                pressable.Release();
+            }
+            pressable = null;
+        }
     }
 
     public void castRay()

@@ -2,7 +2,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Networking;
 
 public class PuzzleManager : MonoBehaviour
 {
@@ -37,17 +36,19 @@ public class PuzzleManager : MonoBehaviour
 
     public void Check()
     {
-        for (int i = 0; i > elements.Length; i++)
+        for (int i = 0; i < elements.Length; i++)
         {
             if (!elements[i].complete)
             {
+                
                 complete = false;
                 break;
             }
-
+            
             if (i == elements.Length - 1)
             {
                 complete = true;
+                
             }
         }
     }

@@ -29,8 +29,7 @@ public class GearControler : Interactable
 
     private void RotateGear(GearClass gear)
     {
-        gear.gameObject.transform.Rotate(0,0,45f);
-        gear.Completed = gear.gameObject.transform.rotation;
+        gear.Completed = gear.gameObject.transform.localRotation * Quaternion.Euler(0, 0, 45);
     }
 
     public override bool Click()
