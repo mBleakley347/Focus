@@ -32,7 +32,7 @@ public class GearControler : Interactable
         gear.Completed = gear.gameObject.transform.localRotation * Quaternion.Euler(0, 0, 45);
     }
 
-    public override bool Click()
+    public override bool Click(Vector3 a)
     {
         GearRotateCheck();
         return true;

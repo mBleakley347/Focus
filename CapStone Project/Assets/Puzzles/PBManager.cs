@@ -1,12 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public class PBManager : MonoBehaviour
 {
    
-    bool complete;
+    public bool complete;
     public PuzzleManager[] puzzles;
+    public GameObject lid;
     private void Awake()
     {
         foreach (var VARIABLE in puzzles)
@@ -22,14 +24,27 @@ public class PBManager : MonoBehaviour
             if (!puzzles[i].complete)
             {
                 complete = false;
+                Close();
                 break;
             }
             if (i == puzzles.Length - 1)
             {
                 complete = true;
-                Debug.Log("What?");
+                Open();
             }
                 
         }
+    }
+
+    public void Open()
+    {
+        lid.transform.Rotate(0,0,90);
+        lid.transform.localPosition = new Vector3(0.5f,1,0);
+    }
+    
+    public void Close()
+    {
+        lid.transform.rotation.Set(0f,0f,0f,0f);
+        lid.transform.localPosition = new Vector3(0,0.5f,0);
     }
 }

@@ -7,7 +7,7 @@ public class PuzzleManager : MonoBehaviour
 {
     public delegate void check();
     public event check doCheck;
-    private bool currentState;
+    public bool currentState;
     public bool complete
     {
         get

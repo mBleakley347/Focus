@@ -25,7 +25,7 @@ public class PlayerController : MonoBehaviour
                 offset = pressable.transform.position -
                          cam.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y,
                              screentoworld.z));
-                pressable.Click();
+                pressable.Click(offset);
             }
         }
 

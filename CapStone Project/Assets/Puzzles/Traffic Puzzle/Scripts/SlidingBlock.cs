@@ -18,10 +18,10 @@ public class SlidingBlock : PuzzleComponent
         rb = GetComponent<Rigidbody>();
     }
 
-    public override bool Click()
+    public override bool Click(Vector3 a)
     {
         lastpostiton = transform.position;
-        return base.Click();
+        return base.Click(a);
     }
 
     public override bool Hold(Vector3 a)

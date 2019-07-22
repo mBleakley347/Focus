@@ -9,7 +9,7 @@ public class LetterClass : Interactable
     public int currentPos;
     public GameObject currentPlace;
 
-    public override bool Click()
+    public override bool Click(Vector3 a)
     {
         if (currentPlace.GetComponent<LetterSpace>())
         {

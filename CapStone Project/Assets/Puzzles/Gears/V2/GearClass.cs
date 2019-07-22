@@ -20,11 +20,10 @@ public class GearClass : PuzzleComponent
         {
             if (value != transform.localRotation)
             {
-
+                //angles must be in positive values
                 if (value.eulerAngles.z >= correctRotation.z - 1 && value.eulerAngles.z <= correctRotation.z + 1)
                 {
                     complete = true;
-                    
                 }
                 else
                 {
@@ -48,7 +47,6 @@ public class GearClass : PuzzleComponent
 
     public override bool Release()
     {
-        Debug.Log("release");
         if (Constant) return true;
         if (Vector3.Distance(offPosition, gameObject.transform.localPosition) >
             Vector3.Distance(onPosition, gameObject.transform.localPosition))

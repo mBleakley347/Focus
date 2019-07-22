@@ -7,7 +7,7 @@ public class Interactable:MonoBehaviour
     public delegate void managerref(bool a);
     public event managerref check;
 
-    public virtual bool Click()
+    public virtual bool Click(Vector3 a)
     {
        
         return true;
