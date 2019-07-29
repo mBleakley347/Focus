@@ -8,7 +8,7 @@ public class PuzzleComponent : Interactable
 {
     public delegate void check();
     public event check doCheck;
-    private bool currentState;
+    private bool currentState = false;
     public bool complete
     {
         get
