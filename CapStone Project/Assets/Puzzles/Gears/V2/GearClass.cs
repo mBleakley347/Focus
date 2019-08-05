@@ -9,8 +9,10 @@ public class GearClass : PuzzleComponent
     public Vector3 offPosition;
     public bool active;
     public bool Constant;
+    public bool flipRotation;
     public GearClass[] parents;
     public Vector3 correctRotation;
+    
     
 
     public Quaternion Completed
@@ -66,6 +68,10 @@ public class GearClass : PuzzleComponent
     {
         //onPosition = transform.InverseTransformPoint(onPosition);
         //offPosition = transform.InverseTransformPoint(offPosition);
+        if (parents.Length != 0)
+        {
+            flipRotation = !parents[0].flipRotation;
+        }
         if (Constant) return;
         if (!active) transform.transform.localPosition = offPosition;
         if (active) transform.transform.localPosition = onPosition;

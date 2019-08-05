@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
@@ -9,6 +10,7 @@ public class PBManager : MonoBehaviour
     public bool complete;
     public PuzzleManager[] puzzles;
     public GameObject lid;
+    
     private void Awake()
     {
         foreach (var VARIABLE in puzzles)
@@ -36,15 +38,22 @@ public class PBManager : MonoBehaviour
         }
     }
 
+    public void Update()
+    {
+        if (complete) Open();
+        else Close();
+    }
+
     public void Open()
     {
-        lid.transform.Rotate(0,0,90);
-        lid.transform.localPosition = new Vector3(0.5f,1,0);
+        lid.transform.rotation = Quaternion.Lerp(lid.transform.rotation,Quaternion.Euler(0,0,-90),0.01f );
+        //lid.transform.Rotate(0,0,90);
+        //lid.transform.localPosition = new Vector3(0.5f,1,0);
     }
     
     public void Close()
     {
         lid.transform.rotation.Set(0f,0f,0f,0f);
-        lid.transform.localPosition = new Vector3(0,0.5f,0);
+        //lid.transform.localPosition = new Vector3(0,0.5f,0);
     }
 }
