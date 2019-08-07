@@ -6,19 +6,15 @@ public class GravityBoard : Interactable
 {
     [SerializeField] private float rotationSpeed;
     public Vector3 newRotation;
-
+    public Quaternion newQuaternion;
     private Vector3 pos;
-    // Start is called before the first frame update
-    void Start()
-    {
-    }
 
     // Update is called once per frame
     void Update()
     {
-        if (transform.rotation.z < newRotation.z - 1 || transform.rotation.z > newRotation.z + 1)
+        if (transform.rotation.z < newQuaternion.z || transform.rotation.z > newQuaternion.z)
         {
-            transform.Rotate(Vector3.Lerp(transform.rotation.eulerAngles, newRotation, rotationSpeed));
+            transform.rotation = Quaternion.Lerp(transform.rotation, newQuaternion, rotationSpeed);
         }
     }
 
@@ -27,12 +23,15 @@ public class GravityBoard : Interactable
         pos = a;
         if (pos.x >= 0)
         {
-            newRotation = new Vector3(newRotation.x,newRotation.y, newRotation.z +90);
+            newRotation = new Vector3(transform.eulerAngles.x,transform.eulerAngles.y, newRotation.z -90);
         }
         else
         {
-            newRotation = new Vector3(newRotation.x,newRotation.y, newRotation.z -90);
+            newRotation = new Vector3(transform.eulerAngles.x,transform.eulerAngles.y, newRotation.z +90);
         }
+        newQuaternion = Quaternion.Euler(newRotation);
+        newRotation = newQuaternion.eulerAngles;
+        
         return base.Click(a);
     }
 

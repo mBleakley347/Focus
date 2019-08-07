@@ -8229,6 +8229,8 @@ GameObject:
   - component: {fileID: 806823877}
   - component: {fileID: 806823876}
   - component: {fileID: 806823875}
+  - component: {fileID: 806823880}
+  - component: {fileID: 806823879}
   m_Layer: 0
   m_Name: Puzzle Cube
   m_TagString: Untagged
@@ -8308,6 +8310,33 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 21.02, z: 0}
+--- !u!135 &806823879
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 806823874}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 4
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &806823880
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 806823874}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1f0720205178854d9e3dd81e5cc5d60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  active: 1
+  scene: Box Scene 1
 --- !u!1 &810250070
 GameObject:
   m_ObjectHideFlags: 0

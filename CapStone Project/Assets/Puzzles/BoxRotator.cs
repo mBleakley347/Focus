@@ -33,8 +33,6 @@ public class BoxRotator : MonoBehaviour
             {
                 cam.transform.Translate(-cam.transform.InverseTransformDirection(cam.transform.forward) * zoomSpeed);
             }
-            Debug.Log(Vector3.Distance(cam.transform.position, transform.position));
-
             //cam.transform.RotateAround(this.transform.position, Vector3.up, -Input.GetAxis("Mouse X") * turnSpeed);
             //cam.transform.RotateAround(this.transform.position, Vector3.right, Input.GetAxis("Mouse Y") * turnSpeed);
             cam.transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, 0);
