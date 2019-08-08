@@ -18,8 +18,8 @@ GameObject:
   - component: {fileID: 7138144657056953152}
   - component: {fileID: 8575615152424541023}
   m_Layer: 0
-  m_Name: Capsule
-  m_TagString: Untagged
+  m_Name: Player
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -255,7 +255,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxdown: -45
   maxup: 45
-  yinv: 0
+  yinv: 1
   ylock: 0
   mouseSensitivity: 100
   vertical: 0
