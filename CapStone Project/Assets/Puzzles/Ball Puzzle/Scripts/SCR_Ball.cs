@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class SCR_Ball : MonoBehaviour
 {
+    [SerializeField] private float speed;
     [SerializeField] private Rigidbody rb;
     private Vector3 origin;
     public bool released;
@@ -35,7 +36,7 @@ public class SCR_Ball : MonoBehaviour
     {
         if (released)
         {
-            rb.AddForce(-transform.up);
+            rb.AddForce(-transform.up * speed);
         }
     }
 }
