@@ -39,14 +39,16 @@ public class SCR_Wheel : SCR_PuzzleComponent
         a -= pos;
         Vector3 FacePos = Vector3.ProjectOnPlane(transform.InverseTransformPoint(a), transform.forward);
         FacePos.Normalize();
-        if (a.x < FacePos.x - 1 && !directionY || directionY && a.y > FacePos.y + 2)
+        Debug.Log(a.x);
+        Debug.Log( FacePos.x);
+        if (a.z < FacePos.z - 1 && !directionY || directionY && a.y > FacePos.y + 2)
         {
             MoveNode(true);
             player.ForceMouseUp(resetTime);
             newRotation = new Vector3(graphic.transform.eulerAngles.x,graphic.transform.eulerAngles.y, newRotation.z +90);
             newQuaternion = Quaternion.Euler(newRotation);
             newRotation = newQuaternion.eulerAngles;
-        } else if (a.x > FacePos.x + 2 && !directionY || directionY && a.y < FacePos.y - 1)
+        } else if (a.z > FacePos.z + 2 && !directionY || directionY && a.y < FacePos.y - 1)
         {
             MoveNode(false);
             player.ForceMouseUp(resetTime);

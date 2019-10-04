@@ -7,6 +7,7 @@ public class SCR_GridBase : SCR_PuzzleComponent
 {
     public int maxX;
     public int maxY;
+    public float speed;
     [SerializeField] private int currentX;
     [SerializeField] private int currentY;
     [SerializeField] private int correctX;
@@ -64,7 +65,7 @@ public class SCR_GridBase : SCR_PuzzleComponent
     private void Update()
     {
         node.transform.localPosition =
-            Vector3.Lerp(node.transform.localPosition, newPos, Time.deltaTime);
+            Vector3.Lerp(node.transform.localPosition, newPos, Time.deltaTime * speed);
     }
 
     private void Check()

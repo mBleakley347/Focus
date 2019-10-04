@@ -59,7 +59,8 @@ public class Manager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        Cursor.lockState = CursorLockMode.Confined;
+
     }
 
     // Update is called once per frame
@@ -67,7 +68,9 @@ public class Manager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            escapeMenu.SetActive(!escapeMenu.active);
+            Cursor.lockState = CursorLockMode.None;
+            if (currentScene != homeScene[0]) escapeMenu.SetActive(!escapeMenu.active);
+            
         }
     }
 
