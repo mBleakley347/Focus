@@ -20,16 +20,16 @@ public class SCR_BoxRotator : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //roation
+        //rotation
         if (Input.GetMouseButton(1))
         {
             cam.transform.Translate(transform.up * -Input.GetAxis("Mouse Y") * turnSpeed);
             cam.transform.Translate(transform.right * Input.GetAxis("Mouse X") * turnSpeed);
-            if (Vector3.Distance(cam.transform.position, transform.position) > distance)
+            if (Vector3.Distance(cam.transform.position, transform.position) > distance + 1)
             {
                 cam.transform.Translate(cam.transform.InverseTransformDirection(cam.transform.forward)* zoomSpeed);
             }
-            else if (Vector3.Distance(cam.transform.position, transform.position) < distance)
+            else if (Vector3.Distance(cam.transform.position, transform.position) < distance - 1)
             {
                 cam.transform.Translate(-cam.transform.InverseTransformDirection(cam.transform.forward) * zoomSpeed);
             }
@@ -38,7 +38,7 @@ public class SCR_BoxRotator : MonoBehaviour
             cam.transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, 0);
             cam.transform.LookAt(this.transform.position);
         }
-        //couldnt get zooming quite right
+        //couldn't get zooming quite right
         //cam.transform.localPosition = (Vector3.back * -Input.GetAxis("Mouse ScrollWheel") * zoomSpeed) + cam.transform.localPosition;
         //cam.transform.Translate(cam.transform.TransformDirection(Vector3.forward) * Input.GetAxis("Mouse ScrollWheel") * zoomSpeed);
     }

@@ -9,6 +9,8 @@ public class SCR_PlayerController : MonoBehaviour
     private SCR_Interactable pressable;
     private Vector3 screentoworld;
 
+    private float timer;
+
     // Start is called before the first frame update
     private void Start()
     {
@@ -17,6 +19,11 @@ public class SCR_PlayerController : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
+        if (timer >= 0)
+        {
+            timer -= Time.deltaTime;
+            return;
+        }
         if (Input.GetMouseButtonDown(0))
         {
             castRay();
@@ -57,4 +64,11 @@ public class SCR_PlayerController : MonoBehaviour
             pressable = hit.collider.GetComponent<SCR_Interactable>();
         }
     }
+
+    public void ForceMouseUp(float time)
+    {
+        timer = time;
+        pressable = null;
+    }
+    
 }

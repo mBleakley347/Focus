@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Memory : Interactable
+public class Memory : SCR_Interactable
 {
     [SerializeField] private string scene;
     public override bool Click(Vector3 a)
