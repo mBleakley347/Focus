@@ -215,6 +215,11 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 259349566}
+    - target: {fileID: 6862452767049500626, guid: 87bfd5d75b6b9da47bbc78d9ab219ece,
+        type: 3}
+      propertyPath: resetTime
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6862452765859329916, guid: 87bfd5d75b6b9da47bbc78d9ab219ece,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -505,16 +510,21 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 259349566}
-    - target: {fileID: 6862452767049500625, guid: 87bfd5d75b6b9da47bbc78d9ab219ece,
+    - target: {fileID: 6862452767049500626, guid: 87bfd5d75b6b9da47bbc78d9ab219ece,
         type: 3}
-      propertyPath: m_IsTrigger
-      value: 0
+      propertyPath: resetTime
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6862452765859329916, guid: 87bfd5d75b6b9da47bbc78d9ab219ece,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: c53085caa0569d8478b59fb43866f448, type: 2}
+    - target: {fileID: 6862452767049500625, guid: 87bfd5d75b6b9da47bbc78d9ab219ece,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 87bfd5d75b6b9da47bbc78d9ab219ece, type: 3}
 --- !u!4 &201345248 stripped
@@ -2601,7 +2611,6 @@ GameObject:
   - component: {fileID: 726408604}
   - component: {fileID: 726408603}
   - component: {fileID: 726408602}
-  - component: {fileID: 726408601}
   m_Layer: 0
   m_Name: GravityScreen (1)
   m_TagString: Untagged
@@ -2623,21 +2632,6 @@ Transform:
   m_Father: {fileID: 1780411943}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &726408601
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 726408599}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5e5756bfaf5820e44b22632522c8bb90, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rotationSpeed: 0.1
-  newRotation: {x: 0, y: 0, z: 0}
-  newQuaternion: {x: 0, y: 0, z: 0, w: 0}
 --- !u!65 &726408602
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6231,6 +6225,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.y
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5632303042720012208, guid: ed4d169258ac37046ac8d63534c9f3a7,
+        type: 3}
+      propertyPath: maxX
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5632303042720012208, guid: ed4d169258ac37046ac8d63534c9f3a7,
+        type: 3}
+      propertyPath: maxY
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5632303042720012208, guid: ed4d169258ac37046ac8d63534c9f3a7,
+        type: 3}
+      propertyPath: speed
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ed4d169258ac37046ac8d63534c9f3a7, type: 3}

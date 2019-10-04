@@ -17,6 +17,7 @@ public class InteractableObject : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.E) && active)
         {
+            Cursor.lockState = CursorLockMode.Confined;
             Manager.instance.LoadNextScene(scene);
         }
     }
