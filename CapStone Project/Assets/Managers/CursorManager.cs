@@ -7,18 +7,10 @@ public class CursorManager : MonoBehaviour
     public bool locked;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
-        if (!locked)
-        {
-            Cursor.lockState = CursorLockMode.Confined;
-            Manager.instance.cursorMode = CursorLockMode.Confined;
-        }
-        else
-        {
-            Cursor.lockState = CursorLockMode.Locked;
-            Manager.instance.cursorMode = CursorLockMode.Locked;
-        }
+        Debug.Log(locked);
+        Manager.instance.ChangeCursorMode(locked);
     }
 
     // Update is called once per frame

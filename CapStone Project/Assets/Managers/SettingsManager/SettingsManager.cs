@@ -34,5 +34,6 @@ public class SettingsManager : MonoBehaviour
         PlayerPrefs.SetFloat("musicVolume", musicVolumeSlider.value);
         PlayerPrefs.SetInt("Subtitles", Convert.ToInt32(subtitleBool.isOn));
         Manager.instance.MenuScene();
+        SCR_AudioManager.instanceAM.UpdateAudioSettings();
     }
 }

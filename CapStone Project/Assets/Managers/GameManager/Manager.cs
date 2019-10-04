@@ -71,11 +71,13 @@ public class Manager : MonoBehaviour
             if (escapeMenu.active)
             {
                 Cursor.lockState = CursorLockMode.Confined;
+                Debug.Log("worked");
             }
             else
             {
                 Cursor.lockState = cursorMode;
             }
+            Debug.Log(Manager.instance.cursorMode);
         }
     }
 
@@ -94,6 +96,20 @@ public class Manager : MonoBehaviour
         }
     }
 
+    public void ChangeCursorMode(bool locked)
+    {
+        Cursor.lockState = CursorLockMode.None;
+        if (!locked)
+        {
+            Cursor.lockState = CursorLockMode.Confined;
+            cursorMode = CursorLockMode.Confined;
+        }
+        else
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+           cursorMode = CursorLockMode.Locked;
+        }
+    }
     public void Exit()
     {
         Application.Quit();
