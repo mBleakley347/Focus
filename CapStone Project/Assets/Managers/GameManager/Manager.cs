@@ -88,4 +88,9 @@ public class Manager : MonoBehaviour
             focusText.SetActive(false);
         }
     }
+
+    public void Exit()
+    {
+        Application.Quit();
+    }
 }
