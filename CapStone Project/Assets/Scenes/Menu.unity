@@ -253,38 +253,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 347630510}
   m_CullTransparentMesh: 0
---- !u!1 &658672412 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8756120140739926728, guid: 1233316fac24e5e41a88ac4243c7fad0,
-    type: 3}
-  m_PrefabInstance: {fileID: 7237897661869286370}
-  m_PrefabAsset: {fileID: 0}
---- !u!82 &658672413 stripped
-AudioSource:
-  m_CorrespondingSourceObject: {fileID: 7129835238616719576, guid: 1233316fac24e5e41a88ac4243c7fad0,
-    type: 3}
-  m_PrefabInstance: {fileID: 7237897661869286370}
-  m_PrefabAsset: {fileID: 0}
---- !u!82 &658672414 stripped
-AudioSource:
-  m_CorrespondingSourceObject: {fileID: 4638610575023543069, guid: 1233316fac24e5e41a88ac4243c7fad0,
-    type: 3}
-  m_PrefabInstance: {fileID: 7237897661869286370}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &658672416
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 658672412}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b0b0db76fc773454fbf1c2d291c40cfd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  musicSouce: {fileID: 658672414}
-  voiceSouce: {fileID: 658672413}
 --- !u!1 &692759616
 GameObject:
   m_ObjectHideFlags: 0
