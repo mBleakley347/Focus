@@ -12,10 +12,10 @@ public class Manager : MonoBehaviour
     public String previousScene;
     public int homeLevel;
     public String[] homeScene;
+    public CursorLockMode cursorMode;
     
     [SerializeField] private GameObject currentFocus;
     [SerializeField] private GameObject focusText;
-
     [SerializeField] private GameObject escapeMenu;
     private void Awake()
     {
@@ -60,7 +60,6 @@ public class Manager : MonoBehaviour
     void Start()
     {
         Cursor.lockState = CursorLockMode.Confined;
-
     }
 
     // Update is called once per frame
@@ -68,9 +67,15 @@ public class Manager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            Cursor.lockState = CursorLockMode.None;
             if (currentScene != homeScene[0]) escapeMenu.SetActive(!escapeMenu.active);
-            
+            if (escapeMenu.active)
+            {
+                Cursor.lockState = CursorLockMode.Confined;
+            }
+            else
+            {
+                Cursor.lockState = cursorMode;
+            }
         }
     }
 

@@ -8,4 +8,9 @@ public class SceneChangeInterface : MonoBehaviour
     {
         Manager.instance.LoadNextScene(scene);
     }
+
+    public void Exit()
+    {
+        Manager.instance.Exit();
+    }
 }

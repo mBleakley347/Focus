@@ -17,7 +17,6 @@ public class InteractableObject : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.E) && active)
         {
-            Cursor.lockState = CursorLockMode.Confined;
             Manager.instance.LoadNextScene(scene);
         }
     }
@@ -36,7 +35,7 @@ public class InteractableObject : MonoBehaviour
         if (other.gameObject.tag.Equals("Player"))
         {
             active = false;
-            Manager.instance.ChangeFocus(gameObject);
+            Manager.instance.ChangeFocus(null);
         }
     }
 }
