@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CastPlayer : MonoBehaviour
 {
@@ -25,6 +26,10 @@ public class CastPlayer : MonoBehaviour
 
     [Header("misc")]
     public Rigidbody body;
+
+    public Camera viewpoint;
+
+    public Rigidbody heldobject = null;
     // Start is called before the first frame update
     void Awake()
     {
@@ -126,10 +131,49 @@ public class CastPlayer : MonoBehaviour
     void Update()
     {
         XViewAxis(Input.GetAxis("Mouse X")*3);
+        if (Input.GetMouseButtonDown(0))
+        {
+            if (!heldobject)
+            {
+                pickup();
+            }
+            else
+            {
+                drop();
+            }
+        }
+    }
+
+    public void pickup()
+    {
+        RaycastHit hit;
+        if (Physics.Raycast(viewpoint.transform.position,viewpoint.transform.forward, out hit))
+        {
+            if (hit.rigidbody)
+            {
+                heldobject = hit.rigidbody;
+                heldobject.angularDrag = 2;
+                //heldobject.isKinematic = true;
+                //heldobject.transform.SetParent(viewpoint.transform);
+            }
+        }
+    }
+
+    public void drop()
+    {
+        //heldobject.transform.SetParent(null);
+        //heldobject.isKinematic = false;
+        heldobject.angularDrag = 0.05f;
+        heldobject = null;
     }
 
     private void FixedUpdate()
     {
+        if (heldobject)
+        {
+            Vector3 dir = (viewpoint.transform.position + viewpoint.transform.forward) - heldobject.transform.position;
+            heldobject.velocity = dir * Mathf.Pow(dir.magnitude+2,2);
+        }
         playerContext.RunState();
         MoveAxis(Input.GetAxis("Horizontal")*movespeed,Input.GetAxis("Vertical")*movespeed);
         Vector3 axis = Vector3.Cross(transform.up,-gravitydirection);
