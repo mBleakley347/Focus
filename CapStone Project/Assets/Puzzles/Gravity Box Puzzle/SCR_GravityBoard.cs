@@ -12,6 +12,7 @@ public class SCR_GravityBoard : SCR_Interactable
     // Update is called once per frame
     void Update()
     {
+        if (Manager.instance.paused) return;
         if (transform.rotation.z < newQuaternion.z || transform.rotation.z > newQuaternion.z)
         {
             transform.rotation = Quaternion.Lerp(transform.rotation, newQuaternion, rotationSpeed);

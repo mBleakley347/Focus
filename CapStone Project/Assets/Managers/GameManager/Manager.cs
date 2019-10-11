@@ -13,6 +13,7 @@ public class Manager : MonoBehaviour
     public int homeLevel;
     public String[] homeScene;
     public CursorLockMode cursorMode;
+    public bool paused;
     
     [SerializeField] private GameObject currentFocus;
     [SerializeField] private GameObject focusText;
@@ -31,6 +32,8 @@ public class Manager : MonoBehaviour
 
     public void LoadNextScene(String nextScene)
     {
+        paused = false;
+        Time.timeScale = 1;
         if (nextScene != null)
         {
             escapeMenu.SetActive(false);
@@ -70,12 +73,15 @@ public class Manager : MonoBehaviour
             if (currentScene != homeScene[0]) escapeMenu.SetActive(!escapeMenu.active);
             if (escapeMenu.active)
             {
+                Time.timeScale = 0;
                 Cursor.lockState = CursorLockMode.Confined;
-                Debug.Log("worked");
+                paused = true;
             }
             else
             {
+                Time.timeScale = 1;
                 Cursor.lockState = cursorMode;
+                paused = false;
             }
             Debug.Log(Manager.instance.cursorMode);
         }

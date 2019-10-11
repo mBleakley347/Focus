@@ -64,6 +64,7 @@ public class SCR_GridBase : SCR_PuzzleComponent
 
     private void Update()
     {
+        if (Manager.instance.paused) return;
         node.transform.localPosition =
             Vector3.Lerp(node.transform.localPosition, newPos, Time.deltaTime * speed);
     }

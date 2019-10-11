@@ -87,6 +87,7 @@ public class SCR_Wheel : SCR_PuzzleComponent
 
     private void Update()
     {
+        if (Manager.instance.paused) return;
         if (graphic.transform.rotation.z < newQuaternion.z || graphic.transform.rotation.z > newQuaternion.z)
         {
             graphic.transform.rotation = Quaternion.Lerp(graphic.transform.rotation, newQuaternion, rotationSpeed);

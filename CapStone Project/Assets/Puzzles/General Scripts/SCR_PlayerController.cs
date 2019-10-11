@@ -19,6 +19,7 @@ public class SCR_PlayerController : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
+        if (Manager.instance.paused) return;
         if (timer >= 0)
         {
             timer -= Time.deltaTime;

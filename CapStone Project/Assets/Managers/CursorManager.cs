@@ -7,9 +7,8 @@ public class CursorManager : MonoBehaviour
     public bool locked;
 
     // Start is called before the first frame update
-    void Awake()
+    void Start()
     {
-        Debug.Log(locked);
         Manager.instance.ChangeCursorMode(locked);
     }
 

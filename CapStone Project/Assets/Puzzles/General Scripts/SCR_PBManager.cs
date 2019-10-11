@@ -40,6 +40,7 @@ public class SCR_PBManager : MonoBehaviour
 
     public void Update()
     {
+        if (Manager.instance.paused) return;
         if (complete) Open();
         else Close();
     }

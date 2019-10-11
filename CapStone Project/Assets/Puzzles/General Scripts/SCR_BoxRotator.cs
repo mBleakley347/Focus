@@ -20,6 +20,7 @@ public class SCR_BoxRotator : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Manager.instance.paused) return;
         //rotation
         if (Input.GetMouseButton(1))
         {
@@ -37,6 +38,11 @@ public class SCR_BoxRotator : MonoBehaviour
             //cam.transform.RotateAround(this.transform.position, Vector3.right, Input.GetAxis("Mouse Y") * turnSpeed);
             cam.transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, 0);
             cam.transform.LookAt(this.transform.position);
+        }
+
+        if (Input.GetMouseButtonUp(1))
+        {
+            
         }
         //couldn't get zooming quite right
         //cam.transform.localPosition = (Vector3.back * -Input.GetAxis("Mouse ScrollWheel") * zoomSpeed) + cam.transform.localPosition;
