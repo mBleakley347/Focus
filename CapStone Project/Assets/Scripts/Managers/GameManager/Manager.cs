@@ -44,7 +44,6 @@ public class Manager : MonoBehaviour
             SceneManager.LoadScene(currentScene);
         }
     }
-
     public void ResetScene()
     {
         LoadNextScene(currentScene);
@@ -71,17 +70,19 @@ public class Manager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if (currentScene != homeScene[0]) escapeMenu.SetActive(!escapeMenu.active);
-            if (escapeMenu.active)
+            if (currentScene == homeScene[0]) return;
+            if (!escapeMenu.active)
             {
                 Time.timeScale = 0;
                 Cursor.lockState = CursorLockMode.Confined;
+                escapeMenu.SetActive(true);
                 paused = true;
             }
             else
             {
                 Time.timeScale = 1;
                 Cursor.lockState = cursorMode;
+                escapeMenu.SetActive(false);
                 paused = false;
             }
             Debug.Log(Manager.instance.cursorMode);
