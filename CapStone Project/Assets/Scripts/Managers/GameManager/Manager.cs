@@ -14,6 +14,7 @@ public class Manager : MonoBehaviour
     public String[] homeScene;
     public CursorLockMode cursorMode;
     public bool paused;
+    public bool textUp;
     
     [SerializeField] private GameObject currentFocus;
     [SerializeField] private GameObject focusText;
@@ -119,5 +120,20 @@ public class Manager : MonoBehaviour
     public void Exit()
     {
         Application.Quit();
+    }
+
+    public void HelpText(string text)
+    {
+        if (!textUp)
+        {
+            focusText.SetActive(true);
+            focusText.GetComponent<Text>().text = text;
+            textUp = true;
+        }
+        else
+        {
+            focusText.SetActive(false);
+            textUp = false;
+        }
     }
 }

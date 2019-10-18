@@ -170,12 +170,13 @@ public class CastPlayer : MonoBehaviour
 
     private void FixedUpdate()
     {
+    
+        if (Manager.instance.paused) return;
         if (heldobject)
         {
             Vector3 dir = (viewpoint.transform.position + viewpoint.transform.forward) - heldobject.transform.position;
             heldobject.velocity = dir * Mathf.Pow(dir.magnitude+2,2);
         }
-        if (Manager.instance.paused) return;
         playerContext.RunState();
         MoveAxis(Input.GetAxis("Horizontal")*movespeed,Input.GetAxis("Vertical")*movespeed);
         Vector3 axis = Vector3.Cross(transform.up,-gravitydirection);
