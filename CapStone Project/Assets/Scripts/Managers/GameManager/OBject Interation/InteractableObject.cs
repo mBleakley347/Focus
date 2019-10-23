@@ -10,19 +10,18 @@ public class InteractableObject : MonoBehaviour
 
     private void Start()
     {
-        //if (active) Manager.instance.ChangeFocus(gameObject);
+        if (active) Manager.instance.ChangeFocus(gameObject);
     }
 
     public void Update()
     {
         if (Input.GetKeyDown(KeyCode.E) && active)
         {
-            //uses cast player now
-            //Use();
+            Manager.instance.LoadNextScene(scene);
         }
     }
 
-    /*private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag.Equals("Player"))
         {
@@ -38,10 +37,5 @@ public class InteractableObject : MonoBehaviour
             active = false;
             Manager.instance.ChangeFocus(null);
         }
-    }*/
-    
-    public virtual void Use()
-    {
-        Manager.instance.LoadNextScene(scene);
     }
 }

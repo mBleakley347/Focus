@@ -199,10 +199,9 @@ MonoBehaviour:
   - HousePacked01
   cursorMode: 0
   paused: 0
-  textUp: 0
   currentFocus: {fileID: 0}
   focusText: {fileID: 1693082753126103888}
-  escapeMenu: {fileID: 6169449694672848065}
+  escapeMenu: {fileID: 5138727216745115419}
 --- !u!1 &5138727215696047558
 GameObject:
   m_ObjectHideFlags: 0
