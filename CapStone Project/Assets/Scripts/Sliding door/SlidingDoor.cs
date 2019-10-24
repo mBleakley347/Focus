@@ -32,16 +32,16 @@ public class SlidingDoor : InteractableObject
             Vector3.Lerp(transform.position, newPos, Time.fixedDeltaTime * speed);
     }
 
-    public override void Use()
-    {
-        if (opened)
-        {
-            newPos = closePos;
-        }
-        else
-        {
-            newPos = openPos;
-        }
-        opened = !opened;
-    }
+    //public override void Use()
+    //{
+    //    if (opened)
+    //    {
+    //        newPos = closePos;
+    //    }
+    //    else
+    //    {
+    //        newPos = openPos;
+    //    }
+    //    opened = !opened;
+    //}
 }
