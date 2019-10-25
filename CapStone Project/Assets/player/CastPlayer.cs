@@ -134,8 +134,10 @@ public class CastPlayer : MonoBehaviour
         XViewAxis(Input.GetAxis("Mouse X")*3);
         if (Input.GetMouseButtonDown(0))
         {
+           
             if (!heldobject)
             {
+                
                 pickup();
             }
             else
@@ -147,11 +149,20 @@ public class CastPlayer : MonoBehaviour
 
     public void pickup()
     {
+        
         RaycastHit hit;
-        if (Physics.Raycast(viewpoint.transform.position,viewpoint.transform.forward, out hit))
+        LayerMask objects = LayerMask.GetMask("Objects");
+        if (Physics.Raycast(viewpoint.transform.position,viewpoint.transform.forward, out hit, 300,objects))
         {
             if (hit.rigidbody)
             {
+                Debug.Log("clicky");
+                if (hit.transform.gameObject.GetComponent<InteractableObject>())
+                {
+                    Debug.Log("clicky2");
+                    hit.transform.gameObject.GetComponent<InteractableObject>().Use(this);
+                    return;
+                }
                 heldobject = hit.rigidbody;
                 heldobject.angularDrag = 2;
                 //heldobject.isKinematic = true;

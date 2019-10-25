@@ -5,23 +5,25 @@ using UnityEngine;
 
 public class InteractableObject : MonoBehaviour
 {
-    [SerializeField] private bool active = false;
+    public bool active = false;
     public string scene;
 
     private void Start()
     {
-        if (active) Manager.instance.ChangeFocus(gameObject);
+        //if (active) Manager.instance.ChangeFocus(gameObject);
     }
 
+    /*
     public void Update()
     {
         if (Input.GetKeyDown(KeyCode.E) && active)
         {
-            Manager.instance.LoadNextScene(scene);
+            //uses cast player now
+            //Use();
         }
     }
 
-    private void OnTriggerEnter(Collider other)
+    /*private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag.Equals("Player"))
         {
@@ -37,5 +39,10 @@ public class InteractableObject : MonoBehaviour
             active = false;
             Manager.instance.ChangeFocus(null);
         }
+    }*/
+    
+    public virtual void Use( CastPlayer player)
+    {
+        Manager.instance.LoadNextScene(scene);
     }
 }
