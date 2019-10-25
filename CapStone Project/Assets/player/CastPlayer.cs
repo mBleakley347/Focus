@@ -156,10 +156,11 @@ public class CastPlayer : MonoBehaviour
         {
             if (hit.rigidbody)
             {
-                
+                Debug.Log("clicky");
                 if (hit.transform.gameObject.GetComponent<InteractableObject>())
                 {
-                    hit.transform.gameObject.GetComponent<InteractableObject>().Use();
+                    Debug.Log("clicky2");
+                    hit.transform.gameObject.GetComponent<InteractableObject>().Use(this);
                     return;
                 }
                 heldobject = hit.rigidbody;
