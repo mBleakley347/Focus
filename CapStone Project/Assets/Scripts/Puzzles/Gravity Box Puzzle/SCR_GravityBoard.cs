@@ -13,9 +13,9 @@ public class SCR_GravityBoard : SCR_Interactable
     void Update()
     {
         if (Manager.instance.paused) return;
-        if (transform.rotation.z < newQuaternion.z || transform.rotation.z > newQuaternion.z)
+        if (transform.localRotation.z < newQuaternion.z || transform.localRotation.z > newQuaternion.z)
         {
-            transform.rotation = Quaternion.Lerp(transform.rotation, newQuaternion, rotationSpeed);
+            transform.localRotation = Quaternion.Lerp(transform.localRotation, newQuaternion, rotationSpeed);
         }
     }
 
@@ -24,11 +24,11 @@ public class SCR_GravityBoard : SCR_Interactable
         pos = a;
         if (pos.x >= 0)
         {
-            newRotation = new Vector3(transform.eulerAngles.x,transform.eulerAngles.y, newRotation.z -90);
+            newRotation = new Vector3(transform.localEulerAngles.x,transform.localEulerAngles.y, newRotation.z -90);
         }
         else
         {
-            newRotation = new Vector3(transform.eulerAngles.x,transform.eulerAngles.y, newRotation.z +90);
+            newRotation = new Vector3(transform.localEulerAngles.x,transform.localEulerAngles.y, newRotation.z +90);
         }
         newQuaternion = Quaternion.Euler(newRotation);
         newRotation = newQuaternion.eulerAngles;

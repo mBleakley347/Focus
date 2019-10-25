@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class InteractableObject : MonoBehaviour
 {
-    [SerializeField] private bool active = false;
+    public bool active = false;
     public string scene;
 
     private void Start()
@@ -13,6 +13,7 @@ public class InteractableObject : MonoBehaviour
         //if (active) Manager.instance.ChangeFocus(gameObject);
     }
 
+    /*
     public void Update()
     {
         if (Input.GetKeyDown(KeyCode.E) && active)
@@ -40,7 +41,7 @@ public class InteractableObject : MonoBehaviour
         }
     }*/
     
-    public virtual void Use()
+    public virtual void Use( CastPlayer player)
     {
         Manager.instance.LoadNextScene(scene);
     }
