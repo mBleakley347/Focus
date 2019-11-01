@@ -23,7 +23,7 @@ public class SCR_Wheel : SCR_PuzzleComponent
 
     private void Awake()
     {
-        newRotation = graphic.transform.eulerAngles;
+        newRotation = graphic.transform.localEulerAngles;
     }
 
     public override bool Click(Vector3 a)
@@ -34,23 +34,23 @@ public class SCR_Wheel : SCR_PuzzleComponent
 
     public override bool Hold(Vector3 a)
     {
-        a -= pos;
-        Vector3 FacePos = Vector3.ProjectOnPlane(transform.InverseTransformPoint(a), transform.forward);
-        FacePos.Normalize();
-        Debug.Log(a.x);
-        Debug.Log( FacePos.x);
-        if (a.z < FacePos.z - 1 && !directionY || directionY && a.y > FacePos.y + 2)
+        a = Input.mousePosition;
+        //Vector3 FacePos = Vector3.ProjectOnPlane(transform.InverseTransformPoint(a), transform.forward);
+        Vector3 FacePos = Camera.main.WorldToScreenPoint(transform.position);
+        //FacePos.Normalize();
+        
+        if (a.x < FacePos.x - 30 && !directionY || directionY && a.y > FacePos.y + 30)
         {
             MoveNode(true);
             player.ForceMouseUp(resetTime);
-            newRotation = new Vector3(graphic.transform.eulerAngles.x,graphic.transform.eulerAngles.y, newRotation.z +90);
+            newRotation = new Vector3(graphic.transform.localEulerAngles.x,graphic.transform.localEulerAngles.y, newRotation.z +90);
             newQuaternion = Quaternion.Euler(newRotation);
             newRotation = newQuaternion.eulerAngles;
-        } else if (a.z > FacePos.z + 2 && !directionY || directionY && a.y < FacePos.y - 1)
+        } else if (a.x > FacePos.x + 30 && !directionY || directionY && a.y < FacePos.y - 30)
         {
             MoveNode(false);
             player.ForceMouseUp(resetTime);
-            newRotation = new Vector3(graphic.transform.eulerAngles.x,graphic.transform.eulerAngles.y, newRotation.z -90);
+            newRotation = new Vector3(graphic.transform.localEulerAngles.x,graphic.transform.localEulerAngles.y, newRotation.z -90);
             newQuaternion = Quaternion.Euler(newRotation);
             newRotation = newQuaternion.eulerAngles;
         }
@@ -88,9 +88,9 @@ public class SCR_Wheel : SCR_PuzzleComponent
     private void Update()
     {
         if (Manager.instance.paused) return;
-        if (graphic.transform.rotation.z < newQuaternion.z || graphic.transform.rotation.z > newQuaternion.z)
+        if (graphic.transform.localRotation.z < newQuaternion.z || graphic.transform.localRotation.z > newQuaternion.z)
         {
-            graphic.transform.rotation = Quaternion.Lerp(graphic.transform.rotation, newQuaternion, rotationSpeed);
+            graphic.transform.localRotation = Quaternion.Lerp(graphic.transform.localRotation, newQuaternion, rotationSpeed);
         }
     }
 }

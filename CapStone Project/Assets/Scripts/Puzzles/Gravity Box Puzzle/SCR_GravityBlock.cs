@@ -18,8 +18,8 @@ public class SCR_GravityBlock : MonoBehaviour
     void Update()
     {
         
-        if (!moveXAxis) transform.localPosition = new Vector3(originPos.x,transform.localPosition.y,transform.localPosition.z);
-        if (!moveYAxis) transform.localPosition = new Vector3(transform.localPosition.x,originPos.y,transform.localPosition.z);
+        if (!moveXAxis) transform.localPosition = new Vector3(originPos.x,transform.localPosition.y,originPos.z);
+        if (!moveYAxis) transform.localPosition = new Vector3(transform.localPosition.x,originPos.y,originPos.z);
         
     }
 }

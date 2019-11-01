@@ -47,14 +47,14 @@ public class SCR_PBManager : MonoBehaviour
 
     public void Open()
     {
-        lid.transform.rotation = Quaternion.Lerp(lid.transform.rotation,Quaternion.Euler(0,0,-90),0.01f );
+        lid.transform.localRotation = Quaternion.Lerp(lid.transform.localRotation,Quaternion.Euler(0,0,-90),0.01f );
         //lid.transform.Rotate(0,0,90);
         //lid.transform.localPosition = new Vector3(0.5f,1,0);
     }
     
     public void Close()
     {
-        lid.transform.rotation.Set(0f,0f,0f,0f);
+        lid.transform.localRotation.Set(0f,0f,0f,0f);
         //lid.transform.localPosition = new Vector3(0,0.5f,0);
     }
 }
