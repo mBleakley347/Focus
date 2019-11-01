@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class SCR_PickUpAndTurn : InteractableObject
 {
-    private Vector3 originPos;
-    private Quaternion orgingRotation;
-    private Vector3 newPos;
-    private Quaternion newRotation;
+    public Vector3 originPos;
+    public  Quaternion orgingRotation;
+    public  Vector3 newPos;
+    public  Quaternion newRotation;
     
     // Start is called before the first frame update
     void Start()
@@ -25,21 +25,16 @@ public class SCR_PickUpAndTurn : InteractableObject
         transform.rotation = Quaternion.Lerp(transform.rotation,newRotation,0.05f);
         if (active)
         {
-            newRotation =  Quaternion.Euler(Input.GetAxisRaw("Horizontal")+ transform.rotation.eulerAngles.x,
-                Input.GetAxisRaw("Vertical") + transform.rotation.eulerAngles.y, transform.rotation.eulerAngles.z);
+            newRotation =  Quaternion.Euler(Input.GetAxisRaw("Horizontal") + transform.eulerAngles.x,
+                Input.GetAxisRaw("Vertical")  + transform.eulerAngles.y, transform.eulerAngles.z);
             Manager.instance.paused = true;
             Time.timeScale = 0;
         }
-        else
-        {
-            Manager.instance.paused = false;
-            Time.timeScale = 1;
-        }
-
-        if (Input.GetMouseButtonDown(0) && active)
+        // was randomly double clicking
+        /*if (Input.GetMouseButtonDown(0) && active)
         {
             Use(null);
-        }
+        }*/
     }
 
     public override void Use(CastPlayer player)
@@ -54,6 +49,8 @@ public class SCR_PickUpAndTurn : InteractableObject
         {
             newPos = originPos;
             newRotation = orgingRotation;
+            Manager.instance.paused = false;
+            Time.timeScale = 1;
         }
     }
 }

@@ -36,7 +36,7 @@ public class SCR_GravityGoal : SCR_PuzzleComponent
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other?.gameObject?.GetComponent<SCR_GravityBlock>().masterBlock == true)
+        if (other?.gameObject?.GetComponent<SCR_GravityBlock>()?.masterBlock == true)
         {
             other.gameObject.GetComponent<Rigidbody>().useGravity = false;
             _scrGravityBlock = other.gameObject.GetComponent<SCR_GravityBlock>();

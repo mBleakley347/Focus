@@ -5,6 +5,9 @@ using UnityEngine.UI;
 
 public class CastPlayer : MonoBehaviour
 {
+    public GameObject camTransformX;
+    public GameObject camTransformY;
+    
     public float height = 0.5f;
     public float radius = 0.5f;
     public float stepradius = 0.4f;
@@ -29,7 +32,7 @@ public class CastPlayer : MonoBehaviour
 
     public Camera viewpoint;
 
-    public Rigidbody heldobject = null;
+    public GameObject heldobject = null;
     // Start is called before the first frame update
     void Awake()
     {
@@ -130,8 +133,7 @@ public class CastPlayer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Manager.instance.paused) return;
-        XViewAxis(Input.GetAxis("Mouse X")*3);
+       
         if (Input.GetMouseButtonDown(0))
         {
            
@@ -145,37 +147,42 @@ public class CastPlayer : MonoBehaviour
                 drop();
             }
         }
+        if (Manager.instance.paused) return;
+        XViewAxis(Input.GetAxis("Mouse X")*3);
     }
 
     public void pickup()
     {
-        
+        camTransformX.transform.position = Camera.main.transform.position;
+        camTransformY.transform.position = Camera.main.transform.position;
         RaycastHit hit;
         LayerMask objects = LayerMask.GetMask("Objects");
         if (Physics.Raycast(viewpoint.transform.position,viewpoint.transform.forward, out hit, 300,objects))
         {
-            if (hit.rigidbody)
+            if (hit.transform.gameObject.GetComponent<SCR_BoxRotator>())
             {
-                Debug.Log("clicky");
-                if (hit.transform.gameObject.GetComponent<InteractableObject>())
-                {
-                    Debug.Log("clicky2");
-                    hit.transform.gameObject.GetComponent<InteractableObject>().Use(this);
-                    return;
-                }
-                heldobject = hit.rigidbody;
-                heldobject.angularDrag = 2;
+                heldobject = hit.transform.root.gameObject;
+                heldobject.GetComponent<InteractableObject>().Use(this);
+                return;
+            }
+            if (hit.transform.gameObject.GetComponent<InteractableObject>())
+            {
+                hit.transform.gameObject.GetComponent<InteractableObject>().Use(this);
+            }
+            heldobject = hit.transform.gameObject;
+
+            //heldobject.angularDrag = 2;
                 //heldobject.isKinematic = true;
                 //heldobject.transform.SetParent(viewpoint.transform);
-            }
         }
     }
 
     public void drop()
     {
+        heldobject.GetComponent<InteractableObject>().Use(null);
         //heldobject.transform.SetParent(null);
         //heldobject.isKinematic = false;
-        heldobject.angularDrag = 0.05f;
+        //heldobject.angularDrag = 0.05f;
         heldobject = null;
     }
 
@@ -186,7 +193,7 @@ public class CastPlayer : MonoBehaviour
         if (heldobject)
         {
             Vector3 dir = (viewpoint.transform.position + viewpoint.transform.forward) - heldobject.transform.position;
-            heldobject.velocity = dir * Mathf.Pow(dir.magnitude+2,2);
+            //heldobject.velocity = dir * Mathf.Pow(dir.magnitude+2,2);
         }
         playerContext.RunState();
         MoveAxis(Input.GetAxis("Horizontal")*movespeed,Input.GetAxis("Vertical")*movespeed);
