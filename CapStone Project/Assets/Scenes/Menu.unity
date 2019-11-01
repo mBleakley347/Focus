@@ -1145,16 +1145,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameManager
       objectReference: {fileID: 0}
-    - target: {fileID: 5138727215695457675, guid: 63ae0e158ec04714c9c02fb668445f18,
-        type: 3}
-      propertyPath: focusText
-      value: 
-      objectReference: {fileID: 1703546945}
-    - target: {fileID: 5138727215695457675, guid: 63ae0e158ec04714c9c02fb668445f18,
-        type: 3}
-      propertyPath: escapeMenu
-      value: 
-      objectReference: {fileID: 1090338414}
     - target: {fileID: 5138727215695457672, guid: 63ae0e158ec04714c9c02fb668445f18,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1215,15 +1205,25 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6169449694672848065, guid: 63ae0e158ec04714c9c02fb668445f18,
+    - target: {fileID: 1693082753126103888, guid: 63ae0e158ec04714c9c02fb668445f18,
         type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5138727216745115419, guid: 63ae0e158ec04714c9c02fb668445f18,
+    - target: {fileID: 5138727215695457675, guid: 63ae0e158ec04714c9c02fb668445f18,
+        type: 3}
+      propertyPath: focusText
+      value: 
+      objectReference: {fileID: 1703546945}
+    - target: {fileID: 5138727215695457675, guid: 63ae0e158ec04714c9c02fb668445f18,
+        type: 3}
+      propertyPath: escapeMenu
+      value: 
+      objectReference: {fileID: 1090338414}
+    - target: {fileID: 6169449694672848065, guid: 63ae0e158ec04714c9c02fb668445f18,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 264761231423514759, guid: 63ae0e158ec04714c9c02fb668445f18,
         type: 3}
@@ -1255,26 +1255,6 @@ PrefabInstance:
       propertyPath: m_SizeDelta.x
       value: 331.69
       objectReference: {fileID: 0}
-    - target: {fileID: 8603613675606953332, guid: 63ae0e158ec04714c9c02fb668445f18,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1693082753126103888, guid: 63ae0e158ec04714c9c02fb668445f18,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5138727215956583490, guid: 63ae0e158ec04714c9c02fb668445f18,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5138727215696047559, guid: 63ae0e158ec04714c9c02fb668445f18,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 1291455632416121252, guid: 63ae0e158ec04714c9c02fb668445f18,
         type: 3}
       propertyPath: m_FontData.m_FontSize
@@ -1288,6 +1268,26 @@ PrefabInstance:
     - target: {fileID: 1291455632416121252, guid: 63ae0e158ec04714c9c02fb668445f18,
         type: 3}
       propertyPath: m_FontData.m_Alignment
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5138727216745115419, guid: 63ae0e158ec04714c9c02fb668445f18,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8603613675606953332, guid: 63ae0e158ec04714c9c02fb668445f18,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5138727215956583490, guid: 63ae0e158ec04714c9c02fb668445f18,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5138727215696047559, guid: 63ae0e158ec04714c9c02fb668445f18,
+        type: 3}
+      propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5138727215956583491, guid: 63ae0e158ec04714c9c02fb668445f18,
@@ -1359,7 +1359,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
