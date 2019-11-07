@@ -13,7 +13,7 @@ public class SCR_BoxRotator : MonoBehaviour
     public float turnSpeed;
     public float distance;
 
-    public bool on;
+    public bool on = false;
 
     // Update is called once per frame
     void Update()

@@ -30,6 +30,7 @@ public class SCR_BoxPickUp : SCR_PickUpAndTurn
             newPos = (player.viewpoint.transform.position + player.viewpoint.transform.forward/10);
             player.camTransformX.transform.position = new Vector3(player.camTransformX.transform.position.x,newPos.y,player.camTransformX.transform.position.z);
             rotation.Enable(player);
+            Manager.instance.paused = true;
         }
         else
         {
@@ -38,6 +39,8 @@ public class SCR_BoxPickUp : SCR_PickUpAndTurn
             newPos = originPos;
             newRotation = orgingRotation;
             rotation.Enable(player);
+            
+            
         }
     }
 }
