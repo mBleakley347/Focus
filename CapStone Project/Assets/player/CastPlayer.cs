@@ -8,10 +8,10 @@ public class CastPlayer : MonoBehaviour
     public GameObject camTransformX;
     public GameObject camTransformY;
     
-    public float height = 0.5f;
-    public float radius = 0.5f;
-    public float stepradius = 0.4f;
-    public float movespeed = 3;
+    public float height = 0.55f;
+    public float radius = 0.2f;
+    public float stepradius = 0.2f;
+    public float movespeed = 2;
 
     public Vector3 gravitydirection = Vector3.down;
     
@@ -33,6 +33,14 @@ public class CastPlayer : MonoBehaviour
     public Camera viewpoint;
 
     public GameObject heldobject = null;
+    
+    [Header("View Bob")]
+    private float bouncetime = 0f;
+    public float bouncemax = 0.7f;
+    public float bouncesize = 0.1f;
+    private Vector3 startcampos = Vector3.zero;
+
+    public bool walking = false;
     // Start is called before the first frame update
     void Awake()
     {
@@ -44,6 +52,7 @@ public class CastPlayer : MonoBehaviour
         body = GetComponent<Rigidbody>();
         playerContext.ChangeState(OnGround,this);
         checkground(height,gravitydirection);
+        startcampos = viewpoint.transform.localPosition;
     }
 
     public void MoveAxis(float a, float b)
@@ -51,6 +60,16 @@ public class CastPlayer : MonoBehaviour
         body.velocity = Vector3.ProjectOnPlane(transform.right*a,gravitydirection)
                         +Vector3.ProjectOnPlane(transform.forward*b,gravitydirection)
                         +Vector3.Project(body.velocity,gravitydirection);
+
+        walking = (body.velocity != Vector3.zero);
+        if (bouncetime < bouncemax)
+        {
+            bouncetime += Time.deltaTime;
+        }
+        viewpoint.transform.localPosition =startcampos+ new Vector3(0, Bounce(bouncemax, bouncetime), 0);
+        //float bounce = Mathf.Abs(Mathf.Sin(Time.time)) + 2f;
+        //head.transform.localScale = new Vector3(bounce, bounce, bounce);
+        //transform.GetChild(0).GetComponentInChildren<Transform>().localPosition = new Vector2(0, starting.y + ((Mathf.Sin(Time.time * 2) * 0.01f) - 0.01f));
     }
     public void XViewAxis(float i)
     {
@@ -202,6 +221,21 @@ public class CastPlayer : MonoBehaviour
         transform.RotateAround(transform.position-transform.up*(height-radius),axis,angle*(0.1f+(Vector3.Dot(transform.up,-gravitydirection)-1)*0.9f/-2));
     }
 
+    public float Bounce(float dur, float cur)
+    {
+        if (cur >= dur)
+        {
+            if (walking)
+            {
+                bouncetime = 0;
+            }
+            return 0;
+        }
+        else
+        {
+            return (-(bouncesize * ((cur * (cur - dur)) / (Mathf.Pow(dur / 2, 2f)))));
+        }
+    }
     private void OnDrawGizmos()
     {
         if (smallerhit.collider)
