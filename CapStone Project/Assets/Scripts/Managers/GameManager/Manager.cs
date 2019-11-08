@@ -15,6 +15,7 @@ public class Manager : MonoBehaviour
     public CursorLockMode cursorMode;
     public bool paused;
     public bool textUp;
+    public bool puzzleOn;
     
     [SerializeField] private GameObject currentFocus;
     [SerializeField] private GameObject focusText;

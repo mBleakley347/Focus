@@ -41,6 +41,8 @@ public class CastPlayer : MonoBehaviour
     private Vector3 startcampos = Vector3.zero;
 
     public bool walking = false;
+
+    public SCR_PlayerController puzzleControl;
     // Start is called before the first frame update
     void Awake()
     {
@@ -167,6 +169,7 @@ public class CastPlayer : MonoBehaviour
             }
         }
         if (Manager.instance.paused) return;
+        if (Manager.instance.puzzleOn) return;
         XViewAxis(Input.GetAxis("Mouse X")*3);
     }
 
@@ -181,6 +184,7 @@ public class CastPlayer : MonoBehaviour
             if (hit.transform.gameObject.GetComponent<SCR_BoxRotator>())
             {
                 heldobject = hit.transform.root.gameObject;
+                puzzleControl.enabled = false;
                 heldobject.GetComponent<InteractableObject>().Use(this);
                 return;
             }
@@ -209,6 +213,7 @@ public class CastPlayer : MonoBehaviour
     {
     
         if (Manager.instance.paused) return;
+        if (Manager.instance.puzzleOn) return;
         if (heldobject)
         {
             Vector3 dir = (viewpoint.transform.position + viewpoint.transform.forward) - heldobject.transform.position;

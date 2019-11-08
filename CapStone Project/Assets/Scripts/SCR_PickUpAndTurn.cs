@@ -27,7 +27,7 @@ public class SCR_PickUpAndTurn : InteractableObject
         {
             newRotation =  Quaternion.Euler(Input.GetAxisRaw("Horizontal") + transform.eulerAngles.x,
                 Input.GetAxisRaw("Vertical")  + transform.eulerAngles.y, transform.eulerAngles.z);
-            Manager.instance.paused = true;
+            //Manager.instance.paused = true;
             Time.timeScale = 0;
         }
         // was randomly double clicking

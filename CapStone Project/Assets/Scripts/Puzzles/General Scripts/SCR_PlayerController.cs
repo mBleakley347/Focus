@@ -19,7 +19,10 @@ public class SCR_PlayerController : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        if (Manager.instance.paused) return;
+        Time.timeScale = 1;
+        if (!Manager.instance.puzzleOn) return;
+        
+        
         if (timer >= 0)
         {
             timer -= Time.deltaTime;
@@ -57,10 +60,12 @@ public class SCR_PlayerController : MonoBehaviour
 
     public void castRay()
     {
+        LayerMask puzzleMask = LayerMask.GetMask("Puzzles");
         var ray = cam.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
-        if (Physics.Raycast(ray, out hit, 100))
+        if (Physics.Raycast(ray, out hit, 100,puzzleMask))
         {
+            Debug.DrawLine(cam.transform.position,hit.point,Color.red,2f);
             screentoworld = cam.WorldToScreenPoint(hit.collider.transform.position);
             pressable = hit.collider.GetComponent<SCR_Interactable>();
         }

@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -17,7 +17,7 @@ public class SCR_BoxPickUp : SCR_PickUpAndTurn
         {
             newRotation = Quaternion.Euler(Input.GetAxisRaw("Horizontal") + transform.eulerAngles.x,
                 Input.GetAxisRaw("Vertical") + transform.eulerAngles.y, transform.eulerAngles.z);
-            Manager.instance.paused = true;
+            //Manager.instance.paused = true;
             Time.timeScale = 0;
         }
     }
@@ -30,11 +30,17 @@ public class SCR_BoxPickUp : SCR_PickUpAndTurn
             newPos = (player.viewpoint.transform.position + player.viewpoint.transform.forward/5);
             player.camTransformX.transform.position = new Vector3(player.camTransformX.transform.position.x,newPos.y,player.camTransformX.transform.position.z);
             rotation.Enable(player);
-            Manager.instance.paused = true;
+            player.puzzleControl.enabled = true;
+            //Manager.instance.paused = true;
+            Manager.instance.puzzleOn = true;
+            Manager.instance.ChangeCursorMode(false);
         }
         else
         {
-            Manager.instance.paused = false;
+            
+            Manager.instance.ChangeCursorMode(true);
+            //Manager.instance.paused = false;
+            Manager.instance.puzzleOn = false;
             Time.timeScale = 1;
             newPos = originPos;
             newRotation = orgingRotation;

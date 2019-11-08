@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -50,11 +50,11 @@ public class SCR_BoxRotator : MonoBehaviour
             }
             if (camTransformY.transform.position.z >= transform.position.z && camTransformY.transform.position.x >= transform.position.x)
             {
-                camTransformX.transform.RotateAround(transform.position,camTransformX.transform.up,-Input.GetAxis("Mouse X") * turnSpeed);
+                camTransformX.transform.RotateAround(transform.position,camTransformX.transform.up,Input.GetAxis("Mouse X") * turnSpeed);
             }
             else
             {
-                camTransformX.transform.RotateAround(transform.position,-camTransformX.transform.up,-Input.GetAxis("Mouse X") * turnSpeed);
+                camTransformX.transform.RotateAround(transform.position,-camTransformX.transform.up,Input.GetAxis("Mouse X") * turnSpeed);
             }
             
             if (Vector3.Distance(camTransformX.transform.position, transform.position) > distance + 1)
