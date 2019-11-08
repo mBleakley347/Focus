@@ -17,7 +17,8 @@ GameObject:
   - component: {fileID: 1469382786976921494}
   - component: {fileID: 7138144657056953152}
   - component: {fileID: 8575615152424541023}
-  m_Layer: 0
+  - component: {fileID: 454170621}
+  m_Layer: 2
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -80,9 +81,9 @@ MonoBehaviour:
   camTransformX: {fileID: 6539461570594447435}
   camTransformY: {fileID: 8309780758497933387}
   height: 0.55
-  radius: 0.3
+  radius: 0.2
   stepradius: 0.29
-  movespeed: 5
+  movespeed: 2
   gravitydirection: {x: 0, y: -1, z: 0}
   body: {fileID: 0}
   viewpoint: {fileID: 5259878485151461815}
@@ -126,7 +127,7 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.3
+  m_Radius: 0.2
   m_Center: {x: 0, y: 0.12, z: 0}
 --- !u!135 &7138144657056953152
 SphereCollider:
@@ -139,7 +140,7 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.3
+  m_Radius: 0.2
   m_Center: {x: 0, y: 0.5, z: 0}
 --- !u!135 &8575615152424541023
 SphereCollider:
@@ -152,8 +153,21 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.3
+  m_Radius: 0.2
   m_Center: {x: 0, y: -0.21, z: 0}
+--- !u!114 &454170621
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5259878484673879769}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9be74d539dc52543aa3afd17068fa15, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  locked: 1
 --- !u!1 &5259878485143537926
 GameObject:
   m_ObjectHideFlags: 0
@@ -167,7 +181,7 @@ GameObject:
   - component: {fileID: 5259878485143537925}
   - component: {fileID: 5259878485143537924}
   - component: {fileID: 3736015790255315254}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -277,7 +291,8 @@ GameObject:
   - component: {fileID: 5259878485151461812}
   - component: {fileID: 5259878485151461815}
   - component: {fileID: 5259878485151461809}
-  m_Layer: 0
+  - component: {fileID: 1965709003}
+  m_Layer: 2
   m_Name: Main Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
@@ -321,7 +336,7 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.3
+  near clip plane: 0.05
   far clip plane: 1000
   field of view: 60
   orthographic: 0
@@ -349,6 +364,19 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5259878485151461808}
   m_Enabled: 1
+--- !u!114 &1965709003
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5259878485151461808}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff26db721962cdf4a8edcdfa9a767d2a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  profile: {fileID: 11400000, guid: 7b9fd7452fbc04041bf6cf5220ebbbe5, type: 2}
 --- !u!1 &6539461570594447435
 GameObject:
   m_ObjectHideFlags: 0
