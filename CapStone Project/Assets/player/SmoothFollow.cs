@@ -14,7 +14,7 @@ public class SmoothFollow : MonoBehaviour {
     {
 	    if (Manager.instance.puzzleOn) return;
 		    float tempy = Input.GetAxis("Mouse Y") * mouseSensitivity * Time.deltaTime;
-			tempy = Convert.ToBoolean(PlayerPrefs.GetInt("InvertYAxis"))?-tempy:tempy;
+			tempy = Convert.ToBoolean(PlayerPrefs.GetInt("InvertYAxis",1))?-tempy:tempy;
 		    Rotate(transform,tempy,new Vector2(maxdown,maxup), ylock);
 	}
 	
