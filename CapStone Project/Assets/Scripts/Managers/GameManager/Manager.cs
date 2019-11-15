@@ -16,6 +16,7 @@ public class Manager : MonoBehaviour
     public bool paused;
     public bool textUp;
     public bool puzzleOn;
+    public bool settingsOpen;
     
     [SerializeField] private GameObject currentFocus;
     [SerializeField] private GameObject focusText;
@@ -87,7 +88,6 @@ public class Manager : MonoBehaviour
                 escapeMenu.SetActive(false);
                 paused = false;
             }
-            Debug.Log(Manager.instance.cursorMode);
         }
     }
 
@@ -139,4 +139,21 @@ public class Manager : MonoBehaviour
             textUp = false;
         }
     }
+
+    public void Settings()
+    {
+        settingsOpen = !settingsOpen;
+        if (settingsOpen)
+        {
+            SceneManager.LoadScene("SCE_Options", LoadSceneMode.Additive);
+            escapeMenu.SetActive(false);
+            Destroy(Camera.main.gameObject);
+        }
+        else
+        {
+            SceneManager.UnloadScene("SCE_Options");
+            escapeMenu.SetActive(true);
+            cursorMode = CursorLockMode.Locked;
+        }
+    }  
 }

@@ -12,7 +12,6 @@ public class SettingsManager : MonoBehaviour
     [SerializeField] private Toggle subtitleBool;
     [SerializeField] private Toggle viewbobBool;
     [SerializeField] private Toggle yaxisBool;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -39,7 +38,9 @@ public class SettingsManager : MonoBehaviour
         PlayerPrefs.SetInt("Subtitles", Convert.ToInt32(subtitleBool.isOn));
         PlayerPrefs.SetInt("Viewbob", Convert.ToInt32(viewbobBool.isOn));
         PlayerPrefs.SetInt("InvertYAxis", Convert.ToInt32(yaxisBool.isOn));
-        Manager.instance.MenuScene();
+        
         SCR_AudioManager.instanceAM.UpdateAudioSettings();
+        if (!Manager.instance.settingsOpen) Manager.instance.MenuScene();
+        else Manager.instance.Settings();
     }
 }
