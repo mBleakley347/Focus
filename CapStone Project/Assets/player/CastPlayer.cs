@@ -175,8 +175,16 @@ public class CastPlayer : MonoBehaviour
                 drop();
             }
         }
-        if (Manager.instance.paused) return;
-        if (Manager.instance.puzzleOn) return;
+        if (Manager.instance.paused)
+        {
+            body.velocity.Set(0,0,0);
+            return;
+        }
+        if (Manager.instance.puzzleOn)
+        {
+            body.velocity.Set(0, 0, 0);
+            return;
+        }
         XViewAxis(Input.GetAxis("Mouse X")*3);
     }
 
@@ -218,9 +226,15 @@ public class CastPlayer : MonoBehaviour
 
     private void FixedUpdate()
     {
-    
-        if (Manager.instance.paused) return;
-        if (Manager.instance.puzzleOn) return;
+
+        if (Manager.instance.paused)
+        {
+            return;
+        }
+        if (Manager.instance.puzzleOn)
+        {
+            return;
+        }
         if (heldobject)
         {
             Vector3 dir = (viewpoint.transform.position + viewpoint.transform.forward) - heldobject.transform.position;

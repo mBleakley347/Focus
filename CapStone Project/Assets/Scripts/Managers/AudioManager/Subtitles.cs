@@ -59,4 +59,11 @@ public class Subtitles : MonoBehaviour
         text = newSubtitles;
         letters = text.ToCharArray();
     }
+
+    public void GetLines(string fileName)
+    {
+        // get string from file 
+        //split string into sections with the use of : or somthing similar
+        // set into array and display them with audio
+    }
 }
