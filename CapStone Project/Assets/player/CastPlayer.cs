@@ -186,7 +186,7 @@ public class CastPlayer : MonoBehaviour
         camTransformY.transform.position = Camera.main.transform.position;
         RaycastHit hit;
         LayerMask objects = LayerMask.GetMask("Objects");
-        if (Physics.Raycast(viewpoint.transform.position,viewpoint.transform.forward, out hit, 300,objects))
+        if (Physics.SphereCast(viewpoint.transform.position, 0.2f,viewpoint.transform.forward, out hit, 300,objects))
         {
             if (hit.transform.gameObject.GetComponent<SCR_BoxRotator>())
             {
