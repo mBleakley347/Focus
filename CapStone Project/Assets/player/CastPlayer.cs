@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -12,6 +13,7 @@ public class CastPlayer : MonoBehaviour
     public float radius = 0.2f;
     public float stepradius = 0.2f;
     public float movespeed = 2;
+    public float scale = 1;
 
     public Vector3 gravitydirection = Vector3.down;
     
@@ -54,7 +56,7 @@ public class CastPlayer : MonoBehaviour
         body = GetComponent<Rigidbody>();
         playerContext.ChangeState(OnGround,this);
         checkground(height,gravitydirection);
-        startcampos = viewpoint.transform.localPosition;
+        startcampos = viewpoint.transform.parent.localPosition;
     }
 
     public void MoveAxis(float a, float b)
@@ -63,15 +65,20 @@ public class CastPlayer : MonoBehaviour
                         +Vector3.ProjectOnPlane(transform.forward*b,gravitydirection)
                         +Vector3.Project(body.velocity,gravitydirection);
 
-        walking = (body.velocity != Vector3.zero);
-        if (bouncetime < bouncemax)
+        Vector3 temp = scale * startcampos;
+        if (Convert.ToBoolean(PlayerPrefs.GetInt("Viewbob")))
         {
-            bouncetime += Time.deltaTime;
+            walking = (body.velocity != Vector3.zero);
+            if (bouncetime < bouncemax)
+            {
+                bouncetime += Time.deltaTime;
+            }
+            temp += new Vector3(0, scale*(Bounce(bouncemax, bouncetime)), 0);
         }
-        viewpoint.transform.localPosition =startcampos+ new Vector3(0, Bounce(bouncemax, bouncetime), 0);
-        //float bounce = Mathf.Abs(Mathf.Sin(Time.time)) + 2f;
-        //head.transform.localScale = new Vector3(bounce, bounce, bounce);
-        //transform.GetChild(0).GetComponentInChildren<Transform>().localPosition = new Vector2(0, starting.y + ((Mathf.Sin(Time.time * 2) * 0.01f) - 0.01f));
+
+        Debug.Log(temp);
+
+        viewpoint.transform.parent.localPosition = temp;
     }
     public void XViewAxis(float i)
     {
