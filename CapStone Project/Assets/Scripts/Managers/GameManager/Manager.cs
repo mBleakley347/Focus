@@ -22,6 +22,7 @@ public class Manager : MonoBehaviour
     [SerializeField] private GameObject escapeMenu;
     private void Awake()
     {
+        currentScene = SceneManager.GetActiveScene().name;
         if (instance == null)
         {
             instance = this;
