@@ -8,7 +8,7 @@ public class SCR_StaticTurn : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        player = GameObject.Find("Player");
     }
 
     // Update is called once per frame
@@ -16,7 +16,7 @@ public class SCR_StaticTurn : MonoBehaviour
     {
         transform.LookAt(player.transform);
         float temp = Mathf.Repeat(transform.localEulerAngles.y + 180,360);
-        transform.localRotation = Quaternion.Euler(0, Mathf.Clamp(temp, 140, 220), 0);
+        transform.localRotation = Quaternion.Euler(0, Mathf.Clamp(temp, 100, 260), 0);
         
     }
 }
