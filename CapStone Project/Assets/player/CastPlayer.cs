@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class CastPlayer : MonoBehaviour
@@ -35,11 +36,14 @@ public class CastPlayer : MonoBehaviour
     public Camera viewpoint;
 
     public GameObject heldobject = null;
+
+    public List<AudioSource> currentfootstep;
     
     [Header("View Bob")]
     private float bouncetime = 0f;
     public float bouncemax = 0.7f;
-    public float bouncesize = 0.1f;
+    [FormerlySerializedAs("bouncesize")] public float vertbouncesize = 0.1f;
+    public float horizontalbouncesize = 0.1f;
     private Vector3 startcampos = Vector3.zero;
 
     public bool walking = false;
@@ -73,10 +77,12 @@ public class CastPlayer : MonoBehaviour
             {
                 bouncetime += Time.deltaTime;
             }
-            temp += new Vector3(0, scale*(Bounce(bouncemax, bouncetime)), 0);
+
+            float bounceval = Bounce(bouncemax, bouncetime);
+            temp += new Vector3(scale*(horizontalbouncesize*bounceval), scale*(vertbouncesize*bounceval), 0);
         }
 
-        Debug.Log(temp);
+        //Debug.Log(temp); // trying to figure out the sliding and late bouncing
 
         viewpoint.transform.parent.localPosition = temp;
     }
@@ -240,12 +246,13 @@ public class CastPlayer : MonoBehaviour
             if (walking)
             {
                 bouncetime = 0;
+                currentfootstep[0]?.Play();
             }
             return 0;
         }
         else
         {
-            return (-(bouncesize * ((cur * (cur - dur)) / (Mathf.Pow(dur / 2, 2f)))));
+            return (-((cur * (cur - dur)) / (Mathf.Pow(dur / 2, 2f))));
         }
     }
     private void OnDrawGizmos()
