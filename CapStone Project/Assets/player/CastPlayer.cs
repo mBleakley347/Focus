@@ -79,7 +79,7 @@ public class CastPlayer : MonoBehaviour
             }
 
             float bounceval = Bounce(bouncemax, bouncetime);
-            temp += new Vector3(scale*(horizontalbouncesize*bounceval), scale*(vertbouncesize*bounceval), 0);
+            temp += new Vector3(scale*(horizontalbouncesize*Mathf.Sin((bouncetime*2*Mathf.PI)/bouncemax)), scale*(vertbouncesize*bounceval), 0);
         }
 
         //Debug.Log(temp); // trying to figure out the sliding and late bouncing
