@@ -1,18 +1,24 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class DrawingMemory : MonoBehaviour
 {
     public GameObject[] Dads;
     public int Dadpos;
     public List<Material> dithermat;
+    public GameObject[] VoiceLines;
+    public AudioSource Speaking;
+    public int Voicepos;
+    public float Waittime;
     // Start is called before the first frame update
     void Start()
     {
         Dadpos = 0;
         Dads[Dadpos].SetActive(true);
-
+        Voicepos = 0;
+        Speaking = VoiceLines[Voicepos].GetComponent<AudioSource>();
         var temp = Dads[Dadpos].GetComponentsInChildren<Renderer>();
         foreach (Renderer item in temp)
         {
@@ -21,6 +27,7 @@ public class DrawingMemory : MonoBehaviour
                 if (mat.shader.name == "Custom/Dither") dithermat.Add(mat);
             }
         }
+        Speaking.Play();
     }
 
     // Update is called once per frame
@@ -29,6 +36,20 @@ public class DrawingMemory : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             Change();
+        }
+        if (Voicepos < VoiceLines.Length)
+        {
+            if (Speaking.isPlaying == false)
+            {
+                Waittime = Waittime + Time.deltaTime * 2;
+                if (Waittime > 1)
+                {
+                    Voicepos++;
+                    Speaking = VoiceLines[Voicepos].GetComponent<AudioSource>();
+                    Speaking.Play();
+                    Waittime = 0;
+                }
+            }
         }
     }
 
