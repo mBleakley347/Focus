@@ -8,8 +8,7 @@ public class DrawingMemory : MonoBehaviour
     public GameObject[] Dads;
     public int Dadpos;
     public List<Material> dithermat;
-    public GameObject[] VoiceLines;
-    public AudioSource Speaking;
+    public AudioClip[] VoiceLines;
     public int Voicepos;
     public float Waittime;
     // Start is called before the first frame update
@@ -18,7 +17,7 @@ public class DrawingMemory : MonoBehaviour
         Dadpos = 0;
         Dads[Dadpos].SetActive(true);
         Voicepos = 0;
-        Speaking = VoiceLines[Voicepos].GetComponent<AudioSource>();
+        SCR_AudioManager.instanceAM.voiceSouce.clip = VoiceLines[Voicepos];
         var temp = Dads[Dadpos].GetComponentsInChildren<Renderer>();
         foreach (Renderer item in temp)
         {
@@ -27,7 +26,7 @@ public class DrawingMemory : MonoBehaviour
                 if (mat.shader.name == "Custom/Dither") dithermat.Add(mat);
             }
         }
-        Speaking.Play();
+        SCR_AudioManager.instanceAM.voiceSouce.Play();
     }
 
     // Update is called once per frame
@@ -39,14 +38,14 @@ public class DrawingMemory : MonoBehaviour
         }
         if (Voicepos < VoiceLines.Length)
         {
-            if (Speaking.isPlaying == false)
+            if (SCR_AudioManager.instanceAM.voiceSouce.isPlaying == false)
             {
                 Waittime = Waittime + Time.deltaTime * 2;
                 if (Waittime > 1)
                 {
                     Voicepos++;
-                    Speaking = VoiceLines[Voicepos].GetComponent<AudioSource>();
-                    Speaking.Play();
+                    SCR_AudioManager.instanceAM.voiceSouce.clip = VoiceLines[Voicepos];
+                    SCR_AudioManager.instanceAM.voiceSouce.Play();
                     Waittime = 0;
                 }
             }

@@ -5,9 +5,9 @@ using UnityEngine;
 public class SCR_AudioManager : MonoBehaviour
 {
     public static SCR_AudioManager instanceAM;
-    [SerializeField] private AudioSource musicSouce;
-    [SerializeField] private AudioSource voiceSouce;
-    [SerializeField] private AudioSource voiceSouce2;
+    [SerializeField] public AudioSource musicSouce;
+    [SerializeField] public AudioSource voiceSouce;
+    [SerializeField] public AudioSource voiceSouce2;
     public AudioClip[] Smoking;
 
     private void Awake()
