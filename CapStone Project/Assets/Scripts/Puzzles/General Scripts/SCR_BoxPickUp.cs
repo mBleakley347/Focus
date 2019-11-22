@@ -5,8 +5,8 @@ using UnityEngine;
 public class SCR_BoxPickUp : SCR_PickUpAndTurn
 {
     
-     public Camera cam;
-     public SCR_BoxRotator rotation;
+    public Camera cam;
+    public SCR_BoxRotator rotation;
 
    
     // Update is called once per frame
@@ -16,8 +16,8 @@ public class SCR_BoxPickUp : SCR_PickUpAndTurn
         transform.rotation = Quaternion.Lerp(transform.rotation, newRotation, 0.05f);
         if (active)
         {
-            newRotation = Quaternion.Euler(Input.GetAxisRaw("Horizontal") + transform.eulerAngles.x,
-                Input.GetAxisRaw("Vertical") + transform.eulerAngles.y, transform.eulerAngles.z);
+            //newRotation = Quaternion.Euler(Input.GetAxisRaw("Horizontal") * speed + transform.eulerAngles.x ,
+                //Input.GetAxisRaw("Vertical") * speed + transform.eulerAngles.y , transform.eulerAngles.z);
             //Manager.instance.paused = true;
             Manager.instance.puzzleOn = true;
             Time.timeScale = 0;

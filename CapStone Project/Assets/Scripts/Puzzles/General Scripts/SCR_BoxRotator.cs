@@ -10,6 +10,9 @@ public class SCR_BoxRotator : MonoBehaviour
     public GameObject xChange;
     public float zoomSpeed;
 
+    private Quaternion x;
+    private Quaternion y;
+
     public float turnSpeed;
     public float distance;
 
@@ -76,8 +79,12 @@ public class SCR_BoxRotator : MonoBehaviour
         {
             //camTransform.transform.position = cam.transform.position;
         }
-        yChange.transform.LookAt(camTransformY.transform.position);
-        xChange.transform.LookAt(camTransformX.transform.position);
+        x = Quaternion.LookRotation(camTransformX.transform.forward,xChange.transform.up);
+        y = Quaternion.LookRotation(camTransformY.transform.forward,yChange.transform.up);
+        xChange.transform.rotation = Quaternion.Slerp(xChange.transform.rotation, x, zoomSpeed);
+        yChange.transform.rotation = Quaternion.Slerp(yChange.transform.rotation, y, zoomSpeed);
+        //yChange.transform.LookAt(camTransformY.transform.position);
+        //xChange.transform.LookAt(camTransformX.transform.position);
         transform.localEulerAngles = new Vector3(transform.localPosition.x,xChange.transform.localEulerAngles.y, 
             transform.localPosition.z);
         //couldn't get zooming quite right
@@ -96,7 +103,8 @@ public class SCR_BoxRotator : MonoBehaviour
         }
         else
         {
-            
+            yChange.transform.rotation = Quaternion.Lerp(yChange.transform.rotation, Quaternion.Euler(0,0,0), 0.05f);
+            xChange.transform.rotation = Quaternion.Lerp(yChange.transform.rotation, Quaternion.Euler(0, 0, 0), 0.05f);
         }
     }
     

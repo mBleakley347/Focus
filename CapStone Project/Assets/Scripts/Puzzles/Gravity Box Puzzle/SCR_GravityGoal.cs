@@ -40,10 +40,10 @@ public class SCR_GravityGoal : SCR_PuzzleComponent
         {
             other.gameObject.GetComponent<Rigidbody>().useGravity = false;
             _scrGravityBlock = other.gameObject.GetComponent<SCR_GravityBlock>();
-
-            _scrGravityBlock.originPos = _scrGravityBlock.transform.localPosition;
+            _scrGravityBlock.enabled = false;
+            /*_scrGravityBlock.originPos = _scrGravityBlock.transform.localPosition;
             _scrGravityBlock.moveXAxis = false;
-            _scrGravityBlock.moveYAxis = false;
+            _scrGravityBlock.moveYAxis = false;*/
             complete = true;
         }
     }

@@ -17,6 +17,15 @@ public class SCR_GravityBlock : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!Manager.instance.puzzleOn)
+        {
+            GetComponent<Rigidbody>().useGravity = false;
+            return;
+        } else
+        {
+            GetComponent<Rigidbody>().useGravity = true;
+        }
+
         transform.localPosition = new Vector3(transform.localPosition.x,transform.localPosition.y,originPos.z);
         if (!moveXAxis) transform.localPosition = new Vector3(originPos.x,transform.localPosition.y,originPos.z);
         if (!moveYAxis) transform.localPosition = new Vector3(transform.localPosition.x,originPos.y,originPos.z);
