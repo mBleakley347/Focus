@@ -59,6 +59,7 @@ public class Manager : MonoBehaviour
     
     public void MenuScen()
     {
+        Cursor.lockState = CursorLockMode.Confined;
         menuUp = true;
         LoadNextScene(homeScene);
         menu.SetActive(true);
@@ -66,6 +67,7 @@ public class Manager : MonoBehaviour
 
     public void StartGame()
     {
+        Cursor.lockState = CursorLockMode.Locked;
         menuUp = false;
         menu.SetActive(false);
     }
@@ -91,21 +93,17 @@ public class Manager : MonoBehaviour
             else
             {
                 Time.timeScale = 1;
-                Cursor.lockState = cursorMode;
+                Cursor.lockState = CursorLockMode.Locked;
                 escapeMenu.SetActive(false);
                 paused = false;
             }
         }
         if (!menuUp)
         {
-            MoveCamera(Camera.main);
+            
         }
     }
 
-    private void MoveCamera(Camera camera)
-    {
-
-    }
     public void ChangeFocus(GameObject newObject)
     {
         if (newObject != null)
