@@ -7,6 +7,7 @@ public class SCR_BoxPickUp : SCR_PickUpAndTurn
     
      public Camera cam;
      public SCR_BoxRotator rotation;
+
    
     // Update is called once per frame
     void Update()
@@ -18,6 +19,7 @@ public class SCR_BoxPickUp : SCR_PickUpAndTurn
             newRotation = Quaternion.Euler(Input.GetAxisRaw("Horizontal") + transform.eulerAngles.x,
                 Input.GetAxisRaw("Vertical") + transform.eulerAngles.y, transform.eulerAngles.z);
             //Manager.instance.paused = true;
+            Manager.instance.puzzleOn = true;
             Time.timeScale = 0;
         }
     }
@@ -32,7 +34,6 @@ public class SCR_BoxPickUp : SCR_PickUpAndTurn
             rotation.Enable(player);
             player.puzzleControl.enabled = true;
             //Manager.instance.paused = true;
-            Manager.instance.puzzleOn = true;
             Manager.instance.ChangeCursorMode(false);
         }
         else

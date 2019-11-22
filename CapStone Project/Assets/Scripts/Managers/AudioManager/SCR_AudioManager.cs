@@ -7,6 +7,8 @@ public class SCR_AudioManager : MonoBehaviour
     public static SCR_AudioManager instanceAM;
     [SerializeField] private AudioSource musicSouce;
     [SerializeField] private AudioSource voiceSouce;
+    [SerializeField] private AudioSource voiceSouce2;
+    public AudioClip[] Smoking;
 
     private void Awake()
     {
@@ -34,5 +36,6 @@ public class SCR_AudioManager : MonoBehaviour
 
         musicSouce.volume = music;
         voiceSouce.volume = voice;
+        voiceSouce2.volume = voice;
     }
 }

@@ -18,6 +18,7 @@ public class CastPlayer : MonoBehaviour
 
     public Vector3 gravitydirection = Vector3.down;
     
+    public Animator animator;
 
     [Header("Context State Machines")]
     public StateMachine<CastPlayer> playerContext;
@@ -167,7 +168,13 @@ public class CastPlayer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       
+        if (Manager.instance.menuUp)
+        {
+            return;
+        }else
+        {
+            animator.SetBool("Move", true);
+        }
         if (Input.GetButtonDown("Interact"))
         {
            
@@ -181,14 +188,9 @@ public class CastPlayer : MonoBehaviour
                 drop();
             }
         }
-        if (Manager.instance.paused)
+        if (Manager.instance.paused || Manager.instance.puzzleOn)
         {
-            body.velocity.Set(0,0,0);
-            return;
-        }
-        if (Manager.instance.puzzleOn)
-        {
-            body.velocity.Set(0, 0, 0);
+            //body.velocity.Set(0,0,0);
             return;
         }
         XViewAxis(Input.GetAxis("Mouse X")*3);
@@ -233,11 +235,7 @@ public class CastPlayer : MonoBehaviour
     private void FixedUpdate()
     {
 
-        if (Manager.instance.paused)
-        {
-            return;
-        }
-        if (Manager.instance.puzzleOn)
+        if (Manager.instance.paused || Manager.instance.puzzleOn || Manager.instance.menuUp)
         {
             return;
         }

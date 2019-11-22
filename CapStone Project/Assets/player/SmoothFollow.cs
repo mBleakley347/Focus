@@ -12,9 +12,9 @@ public class SmoothFollow : MonoBehaviour {
 	// Update is called once per frame
 	void LateUpdate ()
     {
-	    if (Manager.instance.puzzleOn) return;
+	    if (Manager.instance.puzzleOn || Manager.instance.menuUp) return;
 		    float tempy = Input.GetAxis("Mouse Y") * mouseSensitivity * Time.deltaTime;
-			tempy = Convert.ToBoolean(PlayerPrefs.GetInt("InvertYAxis",1))?-tempy:tempy;
+			tempy = Convert.ToBoolean(PlayerPrefs.GetInt("InvertYAxis",1))?tempy:-tempy;
 		    Rotate(transform,tempy,new Vector2(maxdown,maxup), ylock);
 	}
 	

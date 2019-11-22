@@ -21,6 +21,8 @@ public class SettingsManager : MonoBehaviour
         subtitleBool.isOn = Convert.ToBoolean(PlayerPrefs.GetInt("Subtitles", 0));
         viewbobBool.isOn = Convert.ToBoolean(PlayerPrefs.GetInt("Viewbob", 1));
         yaxisBool.isOn = Convert.ToBoolean(PlayerPrefs.GetInt("InvertYAxis", 0));
+
+        DontDestroyOnLoad(gameObject);
     }
 
     // Update is called once per frame
@@ -40,7 +42,6 @@ public class SettingsManager : MonoBehaviour
         PlayerPrefs.SetInt("InvertYAxis", Convert.ToInt32(yaxisBool.isOn));
         
         SCR_AudioManager.instanceAM.UpdateAudioSettings();
-        if (!Manager.instance.settingsOpen) Manager.instance.MenuScene();
-        else Manager.instance.Settings();
+        Manager.instance.Settings();
     }
 }

@@ -43,3 +43,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04f7b1cbf13961f4f8cf4249c1f90e9c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  voiceVolumeSlider: {fileID: 0}
+  masterVolumeSlider: {fileID: 0}
+  musicVolumeSlider: {fileID: 0}
+  subtitleBool: {fileID: 0}
+  viewbobBool: {fileID: 0}
+  yaxisBool: {fileID: 0}

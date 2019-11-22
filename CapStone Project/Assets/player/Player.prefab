@@ -19,6 +19,7 @@ GameObject:
   - component: {fileID: 8575615152424541023}
   - component: {fileID: 454170621}
   - component: {fileID: 3578273103614707524}
+  - component: {fileID: 3523396837596600346}
   m_Layer: 2
   m_Name: Player
   m_TagString: Player
@@ -85,10 +86,16 @@ MonoBehaviour:
   radius: 0.2
   stepradius: 0.29
   movespeed: 2
+  scale: 1
   gravitydirection: {x: 0, y: -1, z: 0}
   body: {fileID: 0}
   viewpoint: {fileID: 5259878485151461815}
   heldobject: {fileID: 0}
+  currentfootstep: []
+  bouncemax: 0.7
+  vertbouncesize: 0.1
+  horizontalbouncesize: 0.1
+  walking: 0
   puzzleControl: {fileID: 3578273103614707524}
 --- !u!114 &5259878484673879767
 MonoBehaviour:
@@ -184,6 +191,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cam: {fileID: 5259878485151461815}
   offset: {x: 0, y: 0, z: 0}
+--- !u!95 &3523396837596600346
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5259878484673879769}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: f9eebca568bcf974095a85ea7fbcb9f6, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &5259878485143537926
 GameObject:
   m_ObjectHideFlags: 0

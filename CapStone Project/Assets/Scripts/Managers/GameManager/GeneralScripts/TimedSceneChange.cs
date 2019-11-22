@@ -18,7 +18,6 @@ public class TimedSceneChange : MonoBehaviour
         if (time <= 0)
         {
             Manager.instance.homeLevel = nextScene;
-            Manager.instance.HomeScene();
         }
         time -= Time.deltaTime;
     }

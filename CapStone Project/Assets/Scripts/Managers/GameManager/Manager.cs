@@ -11,16 +11,20 @@ public class Manager : MonoBehaviour
     public String currentScene;
     public String previousScene;
     public int homeLevel;
-    public String[] homeScene;
+    public String homeScene;
     public CursorLockMode cursorMode;
-    public bool paused;
+    public bool paused = false;
+    public bool menuUp = true;
     public bool textUp;
-    public bool puzzleOn;
-    public bool settingsOpen;
+    public bool puzzleOn = false;
+    public bool settingsOpen = false;
     
     [SerializeField] private GameObject currentFocus;
     [SerializeField] private GameObject focusText;
     [SerializeField] private GameObject escapeMenu;
+    [SerializeField] private GameObject settingsMenu;
+    [SerializeField] private GameObject menu;
+
     private void Awake()
     {
         currentScene = SceneManager.GetActiveScene().name;
@@ -32,6 +36,7 @@ public class Manager : MonoBehaviour
             Destroy(gameObject);
         }
         DontDestroyOnLoad(gameObject);
+        
     }
 
     public void LoadNextScene(String nextScene)
@@ -51,16 +56,18 @@ public class Manager : MonoBehaviour
     {
         LoadNextScene(currentScene);
     }
-
-    public void HomeScene()
-    {
-        LoadNextScene(homeScene[homeLevel]);
-    }
     
-    public void MenuScene()
+    public void MenuScen()
     {
-        homeLevel = 0;
-        LoadNextScene(homeScene[homeLevel]);
+        menuUp = true;
+        LoadNextScene(homeScene);
+        menu.SetActive(true);
+    }
+
+    public void StartGame()
+    {
+        menuUp = false;
+        menu.SetActive(false);
     }
     // Start is called before the first frame update
     void Start()
@@ -73,7 +80,7 @@ public class Manager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if (currentScene == homeScene[0]) return;
+            if (menu.active) return;
             if (!escapeMenu.active)
             {
                 Time.timeScale = 0;
@@ -89,8 +96,16 @@ public class Manager : MonoBehaviour
                 paused = false;
             }
         }
+        if (!menuUp)
+        {
+            MoveCamera(Camera.main);
+        }
     }
 
+    private void MoveCamera(Camera camera)
+    {
+
+    }
     public void ChangeFocus(GameObject newObject)
     {
         if (newObject != null)
@@ -143,17 +158,21 @@ public class Manager : MonoBehaviour
     public void Settings()
     {
         settingsOpen = !settingsOpen;
+        if (paused)
+        {
+            escapeMenu.SetActive(!escapeMenu.active);
+        }
+        if (menuUp)
+        {
+            menu.SetActive(!menu.active);
+        }
         if (settingsOpen)
         {
-            SceneManager.LoadScene("SCE_Options", LoadSceneMode.Additive);
-            escapeMenu.SetActive(false);
-            Destroy(Camera.main.gameObject);
+            settingsMenu.SetActive(true);
         }
         else
         {
-            SceneManager.UnloadScene("SCE_Options");
-            escapeMenu.SetActive(true);
-            cursorMode = CursorLockMode.Locked;
+            settingsMenu.SetActive(false);
         }
     }  
 }
