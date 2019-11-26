@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UnityEngine.Audio;
 
 public class Manager : MonoBehaviour
 {
@@ -18,7 +19,12 @@ public class Manager : MonoBehaviour
     public bool textUp;
     public bool puzzleOn = false;
     public bool settingsOpen = false;
-    
+    public AudioClip MenuMusic;
+    public Text Mainmenushiz;
+    public Text Mainmenushiz2;
+    public Image Mainmenushiz3;
+
+
     [SerializeField] private GameObject currentFocus;
     [SerializeField] private GameObject focusText;
     [SerializeField] private GameObject escapeMenu;
@@ -31,12 +37,13 @@ public class Manager : MonoBehaviour
         if (instance == null)
         {
             instance = this;
-        } else if (instance != this)
+        }
+        else if (instance != this)
         {
             Destroy(gameObject);
         }
         DontDestroyOnLoad(gameObject);
-        
+
     }
 
     public void LoadNextScene(String nextScene)
@@ -56,25 +63,35 @@ public class Manager : MonoBehaviour
     {
         LoadNextScene(currentScene);
     }
-    
+
     public void MenuScen()
     {
         Cursor.lockState = CursorLockMode.Confined;
         menuUp = true;
         LoadNextScene(homeScene);
         menu.SetActive(true);
+
     }
 
     public void StartGame()
     {
         Cursor.lockState = CursorLockMode.Locked;
         menuUp = false;
-        menu.SetActive(false);
+        menu.GetComponentInChildren<Text>().CrossFadeAlpha(0.0f, 2.0f, false);
+        Mainmenushiz.CrossFadeAlpha(0.0f, 2.0f, false);
+        Mainmenushiz2.CrossFadeAlpha(0.0f, 2.0f, false);
+        Mainmenushiz3.CrossFadeAlpha(0.0f, 2.0f, false);
+
+
+
+        //menu.SetActive(false);
     }
     // Start is called before the first frame update
     void Start()
     {
         Cursor.lockState = CursorLockMode.Confined;
+        SCR_AudioManager.instanceAM.musicSouce.clip = MenuMusic;
+        SCR_AudioManager.instanceAM.musicSouce.Play();
     }
 
     // Update is called once per frame
@@ -100,7 +117,7 @@ public class Manager : MonoBehaviour
         }
         if (!menuUp)
         {
-            
+
         }
     }
 
@@ -130,7 +147,7 @@ public class Manager : MonoBehaviour
         else
         {
             Cursor.lockState = CursorLockMode.Locked;
-           cursorMode = CursorLockMode.Locked;
+            cursorMode = CursorLockMode.Locked;
         }
     }
     public void Exit()
@@ -172,5 +189,5 @@ public class Manager : MonoBehaviour
         {
             settingsMenu.SetActive(false);
         }
-    }  
+    }
 }
