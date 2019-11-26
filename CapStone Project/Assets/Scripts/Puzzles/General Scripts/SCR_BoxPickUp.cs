@@ -7,6 +7,7 @@ public class SCR_BoxPickUp : SCR_PickUpAndTurn
     
     public Camera cam;
     public SCR_BoxRotator rotation;
+    public float delayTime;
 
    
     // Update is called once per frame
@@ -19,7 +20,7 @@ public class SCR_BoxPickUp : SCR_PickUpAndTurn
             //newRotation = Quaternion.Euler(Input.GetAxisRaw("Horizontal") * speed + transform.eulerAngles.x ,
                 //Input.GetAxisRaw("Vertical") * speed + transform.eulerAngles.y , transform.eulerAngles.z);
             //Manager.instance.paused = true;
-            Manager.instance.puzzleOn = true;
+            //Manager.instance.puzzleOn = true;
             Time.timeScale = 0;
         }
     }
@@ -33,14 +34,16 @@ public class SCR_BoxPickUp : SCR_PickUpAndTurn
             player.camTransformX.transform.position = new Vector3(player.camTransformX.transform.position.x,newPos.y,player.camTransformX.transform.position.z);
             rotation.Enable(player);
             player.puzzleControl.enabled = true;
-            //Manager.instance.paused = true;
+            Manager.instance.paused = true;
+            Time.timeScale = 0;
+            StartCoroutine(on());
             Manager.instance.ChangeCursorMode(false);
         }
         else
         {
-            
+            GetComponent<Collider>().enabled = false;
             Manager.instance.ChangeCursorMode(true);
-            //Manager.instance.paused = false;
+            
             Manager.instance.puzzleOn = false;
             Time.timeScale = 1;
             newPos = originPos;
@@ -48,5 +51,11 @@ public class SCR_BoxPickUp : SCR_PickUpAndTurn
             rotation.Enable(player);          
             
         }
+    }
+    IEnumerator on()
+    {
+        yield return new WaitForSeconds(delayTime);
+        Manager.instance.paused = false;
+        Manager.instance.puzzleOn = true;
     }
 }
