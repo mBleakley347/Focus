@@ -46,6 +46,7 @@ public class CastPlayer : MonoBehaviour
     [FormerlySerializedAs("bouncesize")] public float vertbouncesize = 0.1f;
     public float horizontalbouncesize = 0.1f;
     private Vector3 startcampos = Vector3.zero;
+    public AudioSource DefaultSound;
 
     public bool walking = false;
 
@@ -71,7 +72,7 @@ public class CastPlayer : MonoBehaviour
                         +Vector3.Project(body.velocity,gravitydirection);
 
         Vector3 temp = scale * startcampos;
-        if (Convert.ToBoolean(PlayerPrefs.GetInt("Viewbob")))
+        if (Convert.ToBoolean(PlayerPrefs.GetInt("Viewbob",1)))
         {
             walking = (body.velocity != Vector3.zero);
             if (bouncetime < bouncemax)
@@ -258,7 +259,10 @@ public class CastPlayer : MonoBehaviour
             if (walking)
             {
                 bouncetime = 0;
-                currentfootstep[0]?.Play();
+                if (currentfootstep.Count >= 1)
+                {
+                    currentfootstep?[0]?.Play();
+                }
             }
             return 0;
         }
