@@ -10971,6 +10971,11 @@ PrefabInstance:
       propertyPath: Mainmenushiz3
       value: 
       objectReference: {fileID: 1695616167}
+    - target: {fileID: 5138727215695457675, guid: 63ae0e158ec04714c9c02fb668445f18,
+        type: 3}
+      propertyPath: MenuMusic
+      value: 
+      objectReference: {fileID: 8300000, guid: 8a542c09cadae7249bb06581ec5a5f80, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 63ae0e158ec04714c9c02fb668445f18, type: 3}
 --- !u!114 &861129600 stripped
@@ -21136,6 +21141,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4638610575023543069, guid: 1233316fac24e5e41a88ac4243c7fad0,
+        type: 3}
+      propertyPath: m_Volume
+      value: 0.224
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1233316fac24e5e41a88ac4243c7fad0, type: 3}

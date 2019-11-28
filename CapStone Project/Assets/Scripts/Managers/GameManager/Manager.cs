@@ -82,10 +82,10 @@ public class Manager : MonoBehaviour
         Mainmenushiz2.CrossFadeAlpha(0.0f, 2.0f, false);
         Mainmenushiz3.CrossFadeAlpha(0.0f, 2.0f, false);
 
-
+        StartCoroutine(Manager.FadeOut());
 
         //menu.SetActive(false);
-    }
+    } 
     // Start is called before the first frame update
     void Start()
     {
@@ -190,4 +190,21 @@ public class Manager : MonoBehaviour
             settingsMenu.SetActive(false);
         }
     }
+
+    public static IEnumerator FadeOut()
+    {
+        Debug.Log("yoyo");
+        float startVolume = SCR_AudioManager.instanceAM.musicSouce.volume;
+
+        while (SCR_AudioManager.instanceAM.musicSouce.volume > 0)
+        {
+            SCR_AudioManager.instanceAM.musicSouce.volume -= startVolume * Time.deltaTime / 5.0f;
+
+            yield return null;
+        }
+
+        SCR_AudioManager.instanceAM.musicSouce.Stop();
+        SCR_AudioManager.instanceAM.musicSouce.volume = startVolume;
+    }
+
 }
