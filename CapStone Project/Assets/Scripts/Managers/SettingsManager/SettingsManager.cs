@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class SettingsManager : MonoBehaviour
 {
+    public static SettingsManager instance = null;
     [SerializeField] private Slider voiceVolumeSlider;
     [SerializeField] private Slider masterVolumeSlider;
     [SerializeField] private Slider musicVolumeSlider;
@@ -21,7 +22,14 @@ public class SettingsManager : MonoBehaviour
         subtitleBool.isOn = Convert.ToBoolean(PlayerPrefs.GetInt("Subtitles", 0));
         viewbobBool.isOn = Convert.ToBoolean(PlayerPrefs.GetInt("Viewbob", 1));
         yaxisBool.isOn = Convert.ToBoolean(PlayerPrefs.GetInt("InvertYAxis", 0));
-
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else if (instance != this)
+        {
+            Destroy(gameObject);
+        }
         DontDestroyOnLoad(gameObject);
     }
 
