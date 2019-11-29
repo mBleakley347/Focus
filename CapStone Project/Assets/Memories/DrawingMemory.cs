@@ -57,7 +57,7 @@ public class DrawingMemory : MonoBehaviour
                 if (Waittime > 1)
                 {
                     Voicepos++;
-                    if (Voicepos == voicefadesynchro[0])
+                    if (Voicepos == voicefadesynchro[0]&&!changing)
                     {
                         voicefadesynchro.RemoveAt(0);
                         changing = true;
@@ -96,8 +96,11 @@ public class DrawingMemory : MonoBehaviour
         // fade the old dad out and the new dad in
         for( int i = 0; i < dithermat.Count; i++)
         {
-            ditherer(dithermat[i], 0, ditherrate*Time.deltaTime);
-            ditherer(nextdithermat[i], 1, ditherrate*Time.deltaTime);
+            //fade the old dad out
+            
+            ditherer(dithermat[i], 0, Mathf.InverseLerp(0,1,dithermat[i].GetFloat("_Transparency"))+ditherrate*Time.deltaTime);
+            // and swap it out
+            ditherer(nextdithermat[i], 1, 1-dithermat[i].GetFloat("_Transparency"));
         }
 
         if (nextdithermat[0].GetFloat("_Transparency") == 1)
