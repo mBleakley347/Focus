@@ -21,7 +21,14 @@ public class SCR_BoxRotator : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!on) return;
+        transform.localEulerAngles = new Vector3(transform.localPosition.x, xChange.transform.localEulerAngles.y,
+            transform.localPosition.z);
+        if (!on)
+        {
+            yChange.transform.rotation = Quaternion.Lerp(yChange.transform.rotation, Quaternion.Euler(0, 0, 0), 0.05f);
+            xChange.transform.rotation = Quaternion.Lerp(yChange.transform.rotation, Quaternion.Euler(0, 0, 0), 0.05f);
+            return;
+        }
         //rotation
         if (Input.GetMouseButton(1))
         {

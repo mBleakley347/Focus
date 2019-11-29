@@ -41,10 +41,10 @@ public class SCR_BoxPickUp : SCR_PickUpAndTurn
         }
         else
         {
-            GetComponent<Collider>().enabled = false;
+            StopAllCoroutines();
             Manager.instance.ChangeCursorMode(true);
-            
             Manager.instance.puzzleOn = false;
+            Manager.instance.paused = false;
             Time.timeScale = 1;
             newPos = originPos;
             newRotation = orgingRotation;

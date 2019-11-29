@@ -24,7 +24,7 @@ public class SCR_GravityBlock : MonoBehaviour
             return;
         }
         
-        GetComponent<Rigidbody>().AddForce(-Vector3.up * 10,ForceMode.Acceleration);
+        GetComponent<Rigidbody>().AddForce(-Vector3.up * 5,ForceMode.Acceleration);
         transform.localPosition = new Vector3(transform.localPosition.x,transform.localPosition.y,originPos.z);
         if (!moveXAxis) transform.localPosition = new Vector3(originPos.x,transform.localPosition.y,originPos.z);
         if (!moveYAxis) transform.localPosition = new Vector3(transform.localPosition.x,originPos.y,originPos.z);

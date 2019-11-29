@@ -22,7 +22,7 @@ public class SCR_GravityBoard : SCR_Interactable
     public override bool Click(Vector3 a)
     {
         pos = a;
-        if (pos.x >= 0)
+        if (pos.x <= 0)
         {
             newRotation = new Vector3(transform.localEulerAngles.x,transform.localEulerAngles.y, newRotation.z -90);
         }

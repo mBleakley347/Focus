@@ -12,7 +12,7 @@ public class SCR_Ball : MonoBehaviour
     void Start()
     {
         SCR_ResetArea.ResetPuzzle += Reset;
-        origin = transform.position;
+        origin = transform.localPosition;
     }
 
     public void Reset()
@@ -21,7 +21,7 @@ public class SCR_Ball : MonoBehaviour
         rb.velocity.Set(0,0,0);
         rb.angularVelocity.Set(0,0,0);
         rb.Sleep();
-        transform.position = origin;
+        transform.localPosition = origin;
     }
 
     public void End()

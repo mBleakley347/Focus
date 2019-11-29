@@ -205,6 +205,7 @@ public class Manager : MonoBehaviour
 
         SCR_AudioManager.instanceAM.musicSouce.Stop();
         SCR_AudioManager.instanceAM.musicSouce.volume = startVolume;
+        Manager.instance.menu.SetActive(false);
     }
 
 }
