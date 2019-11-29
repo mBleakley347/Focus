@@ -10,10 +10,7 @@ public class FloorSoundTriggerSwitch : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            if (!other.GetComponent<CastPlayer>().currentfootstep.Contains(floorsound))
-            {
-                other.GetComponent<CastPlayer>().currentfootstep.Add(floorsound);
-            }
+            other.GetComponent<CastPlayer>().numcolliders += 1;
         }
     }
 
@@ -21,10 +18,7 @@ public class FloorSoundTriggerSwitch : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            if (other.GetComponent<CastPlayer>().currentfootstep.Contains(floorsound))
-            {
-                other.GetComponent<CastPlayer>().currentfootstep.Remove(floorsound);
-            }
+            other.GetComponent<CastPlayer>().numcolliders -= 1;
         }
     }
 }

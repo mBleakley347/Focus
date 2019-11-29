@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
+using UnityEngine.WSA;
+using Random = System.Random;
 
 public class CastPlayer : MonoBehaviour
 {
@@ -37,8 +39,6 @@ public class CastPlayer : MonoBehaviour
     public Camera viewpoint;
 
     public GameObject heldobject = null;
-
-    public List<AudioSource> currentfootstep;
     
     [Header("View Bob")]
     private float bouncetime = 0f;
@@ -46,7 +46,9 @@ public class CastPlayer : MonoBehaviour
     [FormerlySerializedAs("bouncesize")] public float vertbouncesize = 0.1f;
     public float horizontalbouncesize = 0.1f;
     private Vector3 startcampos = Vector3.zero;
-    public AudioSource DefaultSound;
+    public List<AudioClip> DefaultSounds;
+    public List<AudioClip> TileSounds;
+    public int numcolliders = 0;
 
     public bool walking = false;
 
@@ -262,9 +264,21 @@ public class CastPlayer : MonoBehaviour
             if (walking)
             {
                 bouncetime = 0;
-                if (currentfootstep.Count >= 1)
+                if (numcolliders >= 1)
                 {
-                    currentfootstep?[0]?.Play();
+                    if (TileSounds.Count > 0)
+                    {
+                        SCR_AudioManager.instanceAM.footstepSouce?.PlayOneShot(
+                            TileSounds[UnityEngine.Random.Range(0,TileSounds.Count-1)]);
+                    }
+                }
+                else
+                {
+                    if (DefaultSounds.Count > 0)
+                    {
+                        SCR_AudioManager.instanceAM.footstepSouce?.PlayOneShot(
+                            DefaultSounds[UnityEngine.Random.Range(0, DefaultSounds.Count - 1)]);
+                    }
                 }
             }
             return 0;
