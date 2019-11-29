@@ -98,7 +98,7 @@ public class DrawingMemory : MonoBehaviour
         {
             //fade the old dad out
             
-            ditherer(dithermat[i], 0, Mathf.InverseLerp(0,1,dithermat[i].GetFloat("_Transparency"))+ditherrate*Time.deltaTime);
+            ditherer(dithermat[i], 0, Mathf.InverseLerp(1,0,dithermat[i].GetFloat("_Transparency"))+(ditherrate*Time.deltaTime));
             // and swap it out
             ditherer(nextdithermat[i], 1, 1-dithermat[i].GetFloat("_Transparency"));
         }
