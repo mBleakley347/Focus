@@ -51,6 +51,7 @@ public class CastPlayer : MonoBehaviour
     public bool walking = false;
 
     public SCR_PlayerController puzzleControl;
+    public float distance;
     // Start is called before the first frame update
     void Awake()
     {
@@ -189,6 +190,8 @@ public class CastPlayer : MonoBehaviour
                 drop();
             }
         }
+        if (heldobject)
+            if (Vector3.Distance(this.transform.position, heldobject.transform.position) > distance) drop();
         if (Manager.instance.paused || Manager.instance.puzzleOn)
         {
             //body.velocity.Set(0,0,0);

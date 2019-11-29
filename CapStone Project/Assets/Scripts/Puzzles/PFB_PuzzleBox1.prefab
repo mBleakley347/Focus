@@ -2585,9 +2585,10 @@ MonoBehaviour:
   orgingRotation: {x: 0, y: 0, z: 0, w: 0}
   newPos: {x: 0, y: 0, z: 0}
   newRotation: {x: 0, y: 0, z: 0, w: 0}
+  speed: 0
   cam: {fileID: 0}
   rotation: {fileID: 179475057080831493}
-  delayTime: 0
+  delayTime: 5
 --- !u!1 &179475058353167211
 GameObject:
   m_ObjectHideFlags: 0
@@ -7108,8 +7109,7 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: b04e6115f6ee740449f2d0720e07387e, type: 2}
-    m_RemovedComponents:
-    - {fileID: 3117739393648768818, guid: 779c6a48ed322d841b586958035d0468, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 779c6a48ed322d841b586958035d0468, type: 3}
 --- !u!1 &4459935085454743829 stripped
 GameObject:
