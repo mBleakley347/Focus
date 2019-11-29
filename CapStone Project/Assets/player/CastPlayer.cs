@@ -263,13 +263,11 @@ public class CastPlayer : MonoBehaviour
                 bouncetime = 0;
                 if (numcolliders >= 1)
                 {
-                    SCR_AudioManager.instanceAM.voiceSouce.Play();
-                    TileSounds[UnityEngine.Random.Range(0,TileSounds.Count)].Play();
+                    SCR_AudioManager.instanceAM.footstepSouce.PlayOneShot(TileSounds[UnityEngine.Random.Range(0,TileSounds.Count)]);
                 }
                 else
                 {
-                    SCR_AudioManager.instanceAM.voiceSouce.Play();
-                    DefaultSounds[UnityEngine.Random.Range(0,DefaultSounds.Count)].Play();
+                    SCR_AudioManager.instanceAM.footstepSouce.PlayOneShot(DefaultSounds[UnityEngine.Random.Range(0,DefaultSounds.Count)]);
                 }
             }
             return 0;
