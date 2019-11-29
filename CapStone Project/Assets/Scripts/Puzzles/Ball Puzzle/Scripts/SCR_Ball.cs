@@ -26,6 +26,7 @@ public class SCR_Ball : MonoBehaviour
 
     public void End()
     {
+        Destroy(this);
         released = false;
         rb.velocity.Set(0,0,0);
         rb.angularVelocity.Set(0,0,0);
@@ -37,6 +38,9 @@ public class SCR_Ball : MonoBehaviour
         if (released)
         {
             rb.AddForce(-transform.up * speed);
+        } else
+        {
+            transform.localPosition = origin;
         }
     }
 }

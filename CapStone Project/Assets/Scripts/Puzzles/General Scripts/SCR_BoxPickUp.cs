@@ -34,7 +34,7 @@ public class SCR_BoxPickUp : SCR_PickUpAndTurn
             player.camTransformX.transform.position = new Vector3(player.camTransformX.transform.position.x,newPos.y,player.camTransformX.transform.position.z);
             rotation.Enable(player);
             player.puzzleControl.enabled = true;
-            Manager.instance.paused = true;
+            Manager.instance.menuUp = true;
             Time.timeScale = 0;
             StartCoroutine(on());
             Manager.instance.ChangeCursorMode(false);
@@ -44,7 +44,7 @@ public class SCR_BoxPickUp : SCR_PickUpAndTurn
             StopAllCoroutines();
             Manager.instance.ChangeCursorMode(true);
             Manager.instance.puzzleOn = false;
-            Manager.instance.paused = false;
+            Manager.instance.menuUp = false;
             Time.timeScale = 1;
             newPos = originPos;
             newRotation = orgingRotation;
@@ -55,7 +55,7 @@ public class SCR_BoxPickUp : SCR_PickUpAndTurn
     IEnumerator on()
     {
         yield return new WaitForSeconds(delayTime);
-        Manager.instance.paused = false;
+        Manager.instance.menuUp = false;
         Manager.instance.puzzleOn = true;
     }
 }
