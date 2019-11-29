@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
 using UnityEngine.WSA;
+using Random = System.Random;
 
 public class CastPlayer : MonoBehaviour
 {
@@ -45,8 +46,8 @@ public class CastPlayer : MonoBehaviour
     [FormerlySerializedAs("bouncesize")] public float vertbouncesize = 0.1f;
     public float horizontalbouncesize = 0.1f;
     private Vector3 startcampos = Vector3.zero;
-    public AudioSource DefaultSound;
-    public AudioSource TileSound;
+    public List<AudioClip> DefaultSounds;
+    public List<AudioClip> TileSounds;
     public int numcolliders = 0;
 
     public bool walking = false;
@@ -260,13 +261,15 @@ public class CastPlayer : MonoBehaviour
             if (walking)
             {
                 bouncetime = 0;
-                if (numcolliders > 1)
+                if (numcolliders >= 1)
                 {
-                    TileSound.Play();
+                    SCR_AudioManager.instanceAM.voiceSouce.Play();
+                    TileSounds[UnityEngine.Random.Range(0,TileSounds.Count)].Play();
                 }
                 else
                 {
-                    DefaultSound.Play();
+                    SCR_AudioManager.instanceAM.voiceSouce.Play();
+                    DefaultSounds[UnityEngine.Random.Range(0,DefaultSounds.Count)].Play();
                 }
             }
             return 0;
