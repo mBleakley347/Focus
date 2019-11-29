@@ -51,9 +51,11 @@ public class CastPlayer : MonoBehaviour
     public int numcolliders = 0;
 
     public bool walking = false;
+    public bool rbHeld = false;
 
     public SCR_PlayerController puzzleControl;
     public float distance;
+
     // Start is called before the first frame update
     void Awake()
     {
@@ -193,7 +195,9 @@ public class CastPlayer : MonoBehaviour
             }
         }
         if (heldobject)
+        {
             if (Vector3.Distance(this.transform.position, heldobject.transform.position) > distance) drop();
+        }
         if (Manager.instance.paused || Manager.instance.puzzleOn)
         {
             //body.velocity.Set(0,0,0);
@@ -216,10 +220,13 @@ public class CastPlayer : MonoBehaviour
                 puzzleControl.enabled = false;
                 heldobject.GetComponent<InteractableObject>().Use(this);
                 return;
-            }
-            if (hit.transform.gameObject.GetComponent<InteractableObject>())
+            } else if (hit.transform.gameObject.GetComponent<InteractableObject>())
             {
                 hit.transform.gameObject.GetComponent<InteractableObject>().Use(this);
+            } else if (hit.transform.gameObject.GetComponent<Rigidbody>())
+            {
+                rbHeld = true;
+                hit.transform.gameObject.GetComponent<Rigidbody>().angularDrag = 2;
             }
             heldobject = hit.transform.gameObject;
 
@@ -231,11 +238,21 @@ public class CastPlayer : MonoBehaviour
 
     public void drop()
     {
-        heldobject.GetComponent<InteractableObject>().Use(null);
+
         //heldobject.transform.SetParent(null);
         //heldobject.isKinematic = false;
-        //heldobject.angularDrag = 0.05f;
+        
+        if (rbHeld)
+        {
+            rbHeld = false;
+            heldobject.GetComponent<Rigidbody>().angularDrag = 0.05f;
+        }
+        else
+        {
+            heldobject.GetComponent<InteractableObject>().Use(null);
+        }
         heldobject = null;
+
     }
 
     private void FixedUpdate()
@@ -247,8 +264,11 @@ public class CastPlayer : MonoBehaviour
         }
         if (heldobject)
         {
-            Vector3 dir = (viewpoint.transform.position + viewpoint.transform.forward) - heldobject.transform.position;
-            //heldobject.velocity = dir * Mathf.Pow(dir.magnitude+2,2);
+            if (rbHeld)
+            {
+                Vector3 dir = (viewpoint.transform.position + viewpoint.transform.forward) - heldobject.transform.position;
+                heldobject.GetComponent<Rigidbody>().velocity = dir * Mathf.Pow(dir.magnitude+2,2);
+            }
         }
         playerContext.RunState();
         MoveAxis(Input.GetAxis("Horizontal")*movespeed,Input.GetAxis("Vertical")*movespeed);

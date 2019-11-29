@@ -61,6 +61,7 @@ public class Manager : MonoBehaviour
     }
     public void ResetScene()
     {
+        Cursor.lockState = CursorLockMode.Locked;
         LoadNextScene(currentScene);
     }
 
@@ -99,7 +100,7 @@ public class Manager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if (menu.active) return;
+            if (menu.active || settingsOpen) return;
             if (!escapeMenu.active)
             {
                 Time.timeScale = 0;

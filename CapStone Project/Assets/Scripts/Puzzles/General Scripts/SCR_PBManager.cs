@@ -10,6 +10,7 @@ public class SCR_PBManager : MonoBehaviour
     public bool complete;
     public SCR_PuzzleManager[] puzzles;
     public GameObject lid;
+    public AudioSource completionSound;
     
     private void Awake()
     {
@@ -29,6 +30,7 @@ public class SCR_PBManager : MonoBehaviour
                 Close();
                 break;
             }
+            completionSound.Play();
             if (i == puzzles.Length - 1)
             {
                 complete = true;
@@ -41,6 +43,9 @@ public class SCR_PBManager : MonoBehaviour
     public void Update()
     {
         if (Manager.instance.paused) return;
+        float music = PlayerPrefs.GetFloat("musicVolume");
+        music *= PlayerPrefs.GetFloat("masterVolume");
+        completionSound.volume = music;
         if (complete) Open();
         else Close();
     }
