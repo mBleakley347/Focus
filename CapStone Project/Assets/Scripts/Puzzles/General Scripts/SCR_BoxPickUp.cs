@@ -44,6 +44,7 @@ public class SCR_BoxPickUp : SCR_PickUpAndTurn
             StopAllCoroutines();
             Manager.instance.ChangeCursorMode(true);
             Manager.instance.puzzleOn = false;
+            Manager.instance.paused = false;
             Time.timeScale = 1;
             newPos = originPos;
             newRotation = orgingRotation;

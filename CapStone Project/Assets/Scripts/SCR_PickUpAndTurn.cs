@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class SCR_PickUpAndTurn : InteractableObject
 {
+    
     public Vector3 originPos;
     public  Quaternion orgingRotation;
     public  Vector3 newPos;
     public  Quaternion newRotation;
+    public float speed;
     
     // Start is called before the first frame update
     void Start()
@@ -25,9 +27,12 @@ public class SCR_PickUpAndTurn : InteractableObject
         transform.rotation = Quaternion.Lerp(transform.rotation,newRotation,0.05f);
         if (active)
         {
-            newRotation =  Quaternion.Euler(Input.GetAxisRaw("Horizontal") + transform.eulerAngles.x,
-                Input.GetAxisRaw("Vertical")  + transform.eulerAngles.y, transform.eulerAngles.z);
-            //Manager.instance.paused = true;
+            if (Input.GetMouseButton(1))
+            {
+                newRotation = Quaternion.Euler(Input.GetAxisRaw("Mouse Y") * speed + transform.eulerAngles.x,
+                Input.GetAxisRaw("Mouse X") * speed + transform.eulerAngles.y, transform.eulerAngles.z);
+            }
+            Manager.instance.paused = true;
             Time.timeScale = 0;
         }
         // was randomly double clicking
