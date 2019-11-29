@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
+using UnityEngine.WSA;
 
 public class CastPlayer : MonoBehaviour
 {
@@ -37,8 +38,6 @@ public class CastPlayer : MonoBehaviour
     public Camera viewpoint;
 
     public GameObject heldobject = null;
-
-    public List<AudioSource> currentfootstep;
     
     [Header("View Bob")]
     private float bouncetime = 0f;
@@ -47,6 +46,8 @@ public class CastPlayer : MonoBehaviour
     public float horizontalbouncesize = 0.1f;
     private Vector3 startcampos = Vector3.zero;
     public AudioSource DefaultSound;
+    public AudioSource TileSound;
+    public int numcolliders = 0;
 
     public bool walking = false;
 
@@ -259,9 +260,13 @@ public class CastPlayer : MonoBehaviour
             if (walking)
             {
                 bouncetime = 0;
-                if (currentfootstep.Count >= 1)
+                if (numcolliders > 1)
                 {
-                    currentfootstep?[0]?.Play();
+                    TileSound.Play();
+                }
+                else
+                {
+                    DefaultSound.Play();
                 }
             }
             return 0;
