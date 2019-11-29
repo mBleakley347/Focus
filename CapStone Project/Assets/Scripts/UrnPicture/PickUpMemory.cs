@@ -2,14 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Memory : SCR_Interactable
+public class PickUpMemory : InteractableObject
 {
     public GameObject memoryManager;
     public GameObject dadsgroup;
-    public override bool Click(Vector3 a)
+
+    public override void Use(CastPlayer player)
     {
         memoryManager.SetActive(true);
         dadsgroup.SetActive(true);
-        return base.Click(a);
     }
 }
