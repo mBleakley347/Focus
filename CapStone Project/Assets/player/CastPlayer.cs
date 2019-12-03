@@ -77,15 +77,15 @@ public class CastPlayer : MonoBehaviour
                         +Vector3.Project(body.velocity,gravitydirection);
 
         Vector3 temp = scale * startcampos;
+        walking = (Mathf.Abs(a) >= 0.1f|| Mathf.Abs(b)>=0.1f);
+        if (bouncetime < bouncemax)
+        {
+            bouncetime += Time.deltaTime;
+        }
+        float bounceval = Bounce(bouncemax, bouncetime);
+        
         if (Convert.ToBoolean(PlayerPrefs.GetInt("Viewbob",1)))
         {
-            walking = (Mathf.Abs(a) >= 0.1f|| Mathf.Abs(b)>=0.1f);
-            if (bouncetime < bouncemax)
-            {
-                bouncetime += Time.deltaTime;
-            }
-
-            float bounceval = Bounce(bouncemax, bouncetime);
             temp += new Vector3(scale*(horizontalbouncesize*Mathf.Sin((bouncetime*2*Mathf.PI)/bouncemax)), scale*(vertbouncesize*bounceval), 0);
         }
 
