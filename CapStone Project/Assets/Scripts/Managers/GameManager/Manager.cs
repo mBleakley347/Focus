@@ -20,10 +20,12 @@ public class Manager : MonoBehaviour
     public bool puzzleOn = false;
     public bool settingsOpen = false;
     public AudioClip MenuMusic;
+    public AudioClip MainMusic;
+    public AudioClip Atmos;
     public Text Mainmenushiz;
     public Text Mainmenushiz2;
     public Image Mainmenushiz3;
-
+    public bool Done;
 
     [SerializeField] private GameObject currentFocus;
     [SerializeField] private GameObject focusText;
@@ -84,6 +86,8 @@ public class Manager : MonoBehaviour
         Mainmenushiz3.CrossFadeAlpha(0.0f, 2.0f, false);
 
         StartCoroutine(Manager.FadeOut());
+        
+
 
         //menu.SetActive(false);
     } 
@@ -92,6 +96,8 @@ public class Manager : MonoBehaviour
     {
         Cursor.lockState = CursorLockMode.Confined;
         SCR_AudioManager.instanceAM.musicSouce.clip = MenuMusic;
+        SCR_AudioManager.instanceAM.atmosSouce.clip = Atmos;
+        SCR_AudioManager.instanceAM.atmosSouce.Play();
         SCR_AudioManager.instanceAM.musicSouce.Play();
     }
 
@@ -206,7 +212,16 @@ public class Manager : MonoBehaviour
 
         SCR_AudioManager.instanceAM.musicSouce.Stop();
         SCR_AudioManager.instanceAM.musicSouce.volume = startVolume;
+       
         Manager.instance.menu.SetActive(false);
+        Manager.instance.Playmusic();
+
+    }
+
+    public void Playmusic()
+    {
+        SCR_AudioManager.instanceAM.musicSouce.clip = MainMusic;
+        SCR_AudioManager.instanceAM.musicSouce.Play();
     }
 
 }

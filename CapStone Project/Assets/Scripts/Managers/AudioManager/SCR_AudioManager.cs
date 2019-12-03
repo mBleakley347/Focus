@@ -11,6 +11,7 @@ public class SCR_AudioManager : MonoBehaviour
     [SerializeField] public AudioSource voiceSouce;
     [SerializeField] public AudioSource voiceSouce2;
     [SerializeField] public AudioSource footstepSouce;
+    [SerializeField] public AudioSource atmosSouce;
     public AudioClip[] Smoking;
 
     private void Awake()
