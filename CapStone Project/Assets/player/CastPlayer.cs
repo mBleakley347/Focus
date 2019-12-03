@@ -79,7 +79,7 @@ public class CastPlayer : MonoBehaviour
         Vector3 temp = scale * startcampos;
         if (Convert.ToBoolean(PlayerPrefs.GetInt("Viewbob",1)))
         {
-            walking = (body.velocity != Vector3.zero);
+            walking = (Mathf.Abs(a) >= 0.1f|| Mathf.Abs(b)>=0.1f);
             if (bouncetime < bouncemax)
             {
                 bouncetime += Time.deltaTime;
