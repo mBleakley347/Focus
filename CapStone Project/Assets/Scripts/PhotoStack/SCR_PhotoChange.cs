@@ -65,7 +65,7 @@ public class SCR_PhotoChange : SCR_PickUpAndTurn
             
             Manager.instance.paused = true;
             //Time.timeScale = 0;
-            if (Input.GetKeyDown(KeyCode.A) && delay < 0)
+            if (Input.GetMouseButton(0) && delay < 0)
             {
 
                 // do we want different objects or just two images changing places repeatedly 
