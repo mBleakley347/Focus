@@ -67,10 +67,14 @@ public class DrawingMemory : MonoBehaviour
                     {
                         ismusicstingline = true;
                     }
-                    if (Voicepos == voicefadesynchro[0]&&!changing)
+
+                    if (voicefadesynchro.Count > 0)
                     {
-                        voicefadesynchro.RemoveAt(0);
-                        changing = true;
+                        if (Voicepos == voicefadesynchro[0]&&!changing)
+                        {
+                            voicefadesynchro.RemoveAt(0);
+                            changing = true;
+                        }
                     }
                     SCR_AudioManager.instanceAM.voiceSouce.clip = VoiceLines[Voicepos];
                     SCR_AudioManager.instanceAM.voiceSouce.Play();
