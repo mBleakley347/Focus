@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
-using UnityEngine.WSA;
+///using UnityEngine.WSA;
 using Random = System.Random;
 
 public class CastPlayer : MonoBehaviour

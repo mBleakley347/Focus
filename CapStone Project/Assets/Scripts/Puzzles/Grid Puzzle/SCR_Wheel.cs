@@ -24,6 +24,7 @@ public class SCR_Wheel : SCR_PuzzleComponent
     private void Awake()
     {
         newRotation = graphic.transform.localEulerAngles;
+        player = FindObjectOfType<CastPlayer>().GetComponent<SCR_PlayerController>();
     }
 
     public override bool Click(Vector3 a)
