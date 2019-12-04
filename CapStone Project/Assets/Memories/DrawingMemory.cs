@@ -15,11 +15,11 @@ public class DrawingMemory : MonoBehaviour
     public float Waittime;
     public float ditherrate = 0.1f;
     [Header("music sting")]
-    public int musicstingtalkindex = 0;
+    public List<int> musicstingtalkindex;
 
     public bool ismusicstingline = false;
-    public List<float> musicstingtimes;
-    public List<AudioClip> musicstingclip;
+    public List<FloatListWrapper> musicstingtimes;
+    public List<AudioListWrapper> musicstingclip;
 
 
     private bool changing = false;
@@ -63,9 +63,12 @@ public class DrawingMemory : MonoBehaviour
                 if (Waittime > 1)
                 {
                     Voicepos++;
-                    if (Voicepos == musicstingtalkindex&&!ismusicstingline)
+                    if (musicstingtalkindex.Count > 0)
                     {
-                        ismusicstingline = true;
+                        if (Voicepos == musicstingtalkindex[0] && !ismusicstingline)
+                        {
+                            ismusicstingline = true;
+                        }
                     }
 
                     if (voicefadesynchro.Count > 0)
@@ -85,13 +88,16 @@ public class DrawingMemory : MonoBehaviour
 
         if (SCR_AudioManager.instanceAM.voiceSouce.isPlaying&&ismusicstingline)
         {
-            if (SCR_AudioManager.instanceAM.voiceSouce.time >= musicstingtimes[0])
+            if (SCR_AudioManager.instanceAM.voiceSouce.time >= musicstingtimes[0].myList[0])
             {
-                SCR_AudioManager.instanceAM.voiceSouce.PlayOneShot(musicstingclip[0]);
-                musicstingclip.RemoveAt(0);
-                musicstingtimes.RemoveAt(0);
-                if (musicstingclip.Count == 0)
+                SCR_AudioManager.instanceAM.voiceSouce.PlayOneShot(musicstingclip[0].myList[0]);
+                musicstingclip[0].myList.RemoveAt(0);
+                musicstingtimes[0].myList.RemoveAt(0);
+                if (musicstingclip[0].myList.Count == 0)
                 {
+                    musicstingclip.RemoveAt(0);
+                    musicstingtimes.RemoveAt(0);
+                    musicstingtalkindex.RemoveAt(0);
                     ismusicstingline = false;
                 }
             }
