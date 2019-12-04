@@ -86,7 +86,7 @@ public class CastPlayer : MonoBehaviour
         
         if (Convert.ToBoolean(PlayerPrefs.GetInt("Viewbob",1)))
         {
-            temp += new Vector3(scale*(horizontalbouncesize*Mathf.Sin((bouncetime*2*Mathf.PI)/bouncemax)), scale*(vertbouncesize*bounceval), 0);
+            temp += body.velocity.magnitude/2 * new Vector3(scale*(horizontalbouncesize*Mathf.Sin((bouncetime*2*Mathf.PI)/bouncemax)), scale*(vertbouncesize*bounceval), 0);
         }
 
         //Debug.Log(temp); // trying to figure out the sliding and late bouncing
