@@ -111,12 +111,14 @@ public class Manager : MonoBehaviour
             {
                 Time.timeScale = 0;
                 Cursor.lockState = CursorLockMode.Confined;
+                AudioListener.pause = true;
                 escapeMenu.SetActive(true);
                 paused = true;
             }
             else
             {
                 Time.timeScale = 1;
+                AudioListener.pause = false;
                 Cursor.lockState = CursorLockMode.Locked;
                 escapeMenu.SetActive(false);
                 paused = false;
