@@ -260,6 +260,7 @@ public class CastPlayer : MonoBehaviour
 
         if (Manager.instance.paused || Manager.instance.puzzleOn || Manager.instance.menuUp)
         {
+            body.velocity = Vector3.zero;
             return;
         }
         if (heldobject)
