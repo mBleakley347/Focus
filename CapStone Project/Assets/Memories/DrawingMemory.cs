@@ -13,8 +13,14 @@ public class DrawingMemory : MonoBehaviour
     public List<int> voicefadesynchro = new List<int>();
     public int Voicepos;
     public float Waittime;
-
     public float ditherrate = 0.1f;
+    [Header("music sting")]
+    public int musicstingtalkindex = 0;
+
+    public bool ismusicstingline = false;
+    public List<float> musicstingtimes;
+    public List<AudioClip> musicstingclip;
+
 
     private bool changing = false;
     // Start is called before the first frame update
@@ -57,6 +63,10 @@ public class DrawingMemory : MonoBehaviour
                 if (Waittime > 1)
                 {
                     Voicepos++;
+                    if (Voicepos == musicstingtalkindex&&!ismusicstingline)
+                    {
+                        ismusicstingline = true;
+                    }
                     if (Voicepos == voicefadesynchro[0]&&!changing)
                     {
                         voicefadesynchro.RemoveAt(0);
@@ -65,6 +75,20 @@ public class DrawingMemory : MonoBehaviour
                     SCR_AudioManager.instanceAM.voiceSouce.clip = VoiceLines[Voicepos];
                     SCR_AudioManager.instanceAM.voiceSouce.Play();
                     Waittime = 0;
+                }
+            }
+        }
+
+        if (SCR_AudioManager.instanceAM.voiceSouce.isPlaying&&ismusicstingline)
+        {
+            if (SCR_AudioManager.instanceAM.voiceSouce.time >= musicstingtimes[0])
+            {
+                SCR_AudioManager.instanceAM.voiceSouce.PlayOneShot(musicstingclip[0]);
+                musicstingclip.RemoveAt(0);
+                musicstingtimes.RemoveAt(0);
+                if (musicstingclip.Count == 0)
+                {
+                    ismusicstingline = false;
                 }
             }
         }
