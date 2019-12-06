@@ -2785,10 +2785,17 @@ MonoBehaviour:
   Voicepos: 0
   Waittime: 0
   ditherrate: 0.1
-  musicstingtalkindex: 
+  musicstingtalkindex: 04000000
   ismusicstingline: 0
-  musicstingtimes: []
-  musicstingclip: []
+  musicstingtimes:
+  - myList:
+    - 1
+  musicstingclip:
+  - myList:
+    - {fileID: 8300000, guid: 80c4336b8c8fdaa479e6d8d429fcb44a, type: 3}
+  postMemoryRemark: {fileID: 0}
+  waittime: 1
+  whiteouts: []
 --- !u!1 &208627481
 GameObject:
   m_ObjectHideFlags: 0
@@ -22854,7 +22861,7 @@ MonoBehaviour:
   scene: 
   memoryManager: {fileID: 199835586}
   dadsgroup: {fileID: 282879409}
-  remark: {fileID: 0}
+  remark: {fileID: 8300000, guid: 5822f7a8271942f488c8cf0654189563, type: 3}
   waittime: 1
   playerscale: 0.6
   whiteouts:
@@ -22967,6 +22974,9 @@ MonoBehaviour:
     - {fileID: 8300000, guid: 2ade685f2cab2c24d8713ccf3ee42a3a, type: 3}
     - {fileID: 8300000, guid: d07a10c8924dd444484b1f40692bbb87, type: 3}
     - {fileID: 8300000, guid: 66fee1fd6f0659f4c8e13fea36b8dc80, type: 3}
+  postMemoryRemark: {fileID: 0}
+  waittime: 1
+  whiteouts: []
 --- !u!4 &1494794562 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 487440, guid: 9fc563619a488e547b6dae04097a4879,
@@ -25992,6 +26002,9 @@ MonoBehaviour:
   ismusicstingline: 0
   musicstingtimes: []
   musicstingclip: []
+  postMemoryRemark: {fileID: 0}
+  waittime: 1
+  whiteouts: []
 --- !u!1001 &1725726995
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -39,6 +39,18 @@ public class Memory : SCR_Interactable
             {
                 if (remark)
                     SCR_AudioManager.instanceAM.voiceSouce.PlayOneShot(remark);
+                //Fade out current music
+                float startVolume = SCR_AudioManager.instanceAM.musicSouce.volume;
+
+                while (SCR_AudioManager.instanceAM.musicSouce.volume > 0)
+                {
+                    SCR_AudioManager.instanceAM.musicSouce.volume -= startVolume * Time.deltaTime / 5.0f;
+
+                    yield return null;
+                }
+
+                SCR_AudioManager.instanceAM.musicSouce.Stop();
+                SCR_AudioManager.instanceAM.musicSouce.volume = startVolume;
                 start = false;
                 yield return new WaitForSeconds(waittime);
             }
