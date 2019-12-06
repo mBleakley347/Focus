@@ -280,7 +280,7 @@ public class CastPlayer : MonoBehaviour
             rbHeld = false;
             heldobject.GetComponent<Rigidbody>().angularDrag = 0.05f;
         }
-        else
+        else if(!heldobject.GetComponent<PickUpMemory>())
         {
             heldobject.GetComponent<InteractableObject>().Use(null);
         }
