@@ -19,6 +19,7 @@ public class Manager : MonoBehaviour
     public bool textUp;
     public bool puzzleOn = false;
     public bool settingsOpen = false;
+    public bool inMemory = false;
     public AudioClip MenuMusic;
     public AudioClip MainMusic;
     public AudioClip[] Atmos;
@@ -53,6 +54,7 @@ public class Manager : MonoBehaviour
     public void LoadNextScene(String nextScene)
     {
         paused = false;
+        inMemory = false;
         Time.timeScale = 1;
         if (nextScene != null)
         {

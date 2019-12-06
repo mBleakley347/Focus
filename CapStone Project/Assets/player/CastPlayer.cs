@@ -190,18 +190,21 @@ public class CastPlayer : MonoBehaviour
             transform.localRotation = Quaternion.Euler( 0, temp2.eulerAngles.y, 0);
             return;
         }
-        checkInteracton();
-        if (Input.GetButtonDown("Interact"))
+        if (!Manager.instance.inMemory)
         {
-           
-            if (!heldobject)
+            checkInteracton();
+            if (Input.GetButtonDown("Interact"))
             {
-                
-                pickup();
-            }
-            else
-            {
-                drop();
+
+                if (!heldobject)
+                {
+
+                    pickup();
+                }
+                else
+                {
+                    drop();
+                }
             }
         }
         if (heldobject)
