@@ -8,6 +8,7 @@ public class SCR_PuzzleManager : MonoBehaviour
     public delegate void check();
     public event check doCheck;
     public bool currentState;
+    public AudioSource completeSound;
     public bool complete
     {
         get
@@ -48,6 +49,7 @@ public class SCR_PuzzleManager : MonoBehaviour
             if (i == elements.Length - 1)
             {
                 complete = true;
+                completeSound.Play();
                 
             }
         }
