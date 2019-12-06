@@ -9,10 +9,18 @@ public class SmoothFollow : MonoBehaviour {
     public float maxup = -45;
     public bool yinv,ylock = false;
     public float mouseSensitivity = 100.0f;
+    [SerializeField] private CastPlayer player;
 	// Update is called once per frame
 	void LateUpdate ()
     {
 	    if (Manager.instance.puzzleOn || Manager.instance.menuUp || Manager.instance.paused) return;
+        if (Manager.instance.finished)
+        {
+            Vector3 temp = player.target.transform.position - transform.position;
+            Quaternion temp2 = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(temp, transform.up), 0.1f);
+            transform.localRotation = Quaternion.Euler(temp2.eulerAngles.x, 0, 0);
+            return;
+        }
 		    float tempy = Input.GetAxis("Mouse Y") * mouseSensitivity * Time.deltaTime;
 			tempy = Convert.ToBoolean(PlayerPrefs.GetInt("InvertYAxis",1))?tempy:-tempy;
 		    Rotate(transform,tempy,new Vector2(maxdown,maxup), ylock);

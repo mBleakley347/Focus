@@ -28,6 +28,7 @@ public class Manager : MonoBehaviour
     public int RandomTrack;
     public bool Done;
     public GameObject focusText;
+    public bool finished;
 
     [SerializeField] private GameObject currentFocus;
     [SerializeField] private GameObject escapeMenu;

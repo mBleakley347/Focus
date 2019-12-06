@@ -92,13 +92,17 @@ MonoBehaviour:
   body: {fileID: 0}
   viewpoint: {fileID: 5259878485151461815}
   heldobject: {fileID: 0}
-  currentfootstep: []
   bouncemax: 0.7
   vertbouncesize: 0.1
   horizontalbouncesize: 0.1
-  DefaultSound: {fileID: 0}
+  DefaultSounds: []
+  TileSounds: []
+  numcolliders: 0
   walking: 0
+  rbHeld: 0
   puzzleControl: {fileID: 3578273103614707524}
+  distance: 0
+  target: {fileID: 0}
 --- !u!114 &5259878484673879767
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -323,6 +327,7 @@ MonoBehaviour:
   yinv: 1
   ylock: 0
   mouseSensitivity: 100
+  player: {fileID: 5259878484673879761}
   vertical: 0
 --- !u!1 &5259878485151461808
 GameObject:

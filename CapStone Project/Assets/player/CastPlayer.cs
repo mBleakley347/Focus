@@ -56,6 +56,8 @@ public class CastPlayer : MonoBehaviour
     public SCR_PlayerController puzzleControl;
     public float distance;
 
+    public GameObject target;
+
     // Start is called before the first frame update
     void Awake()
     {
@@ -181,6 +183,13 @@ public class CastPlayer : MonoBehaviour
         {
             animator.SetBool("Move", true);
         }
+        if (Manager.instance.finished)
+        {
+            Vector3 temp = target.transform.position - transform.position;
+            Quaternion temp2 = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(temp, transform.up), 0.1f);
+            transform.localRotation = Quaternion.Euler( 0, temp2.eulerAngles.y, 0);
+            return;
+        }
         checkInteracton();
         if (Input.GetButtonDown("Interact"))
         {
@@ -213,10 +222,7 @@ public class CastPlayer : MonoBehaviour
         LayerMask objects = LayerMask.GetMask("Objects");
         if (Physics.SphereCast(viewpoint.transform.position, 0.2f, viewpoint.transform.forward, out hit, 5, objects))
         {
-            
-                Manager.instance.focusText.active = true;
-            
-                
+                Manager.instance.focusText.active = true;                
         }
         else
         {
