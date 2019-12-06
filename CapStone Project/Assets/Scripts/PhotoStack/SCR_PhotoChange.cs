@@ -76,7 +76,7 @@ public class SCR_PhotoChange : SCR_PickUpAndTurn
                 Input.GetAxisRaw("Mouse X") * speed + transform.eulerAngles.y, transform.eulerAngles.z);
             }
             
-            Manager.instance.paused = true;
+            
             //Time.timeScale = 0;
             if (Input.GetMouseButton(0) && delay < 0)
             {
@@ -129,6 +129,7 @@ public class SCR_PhotoChange : SCR_PickUpAndTurn
         active = !active;
         if (active)
         {
+            Manager.instance.paused = true;
             StartCoroutine(SetUp());
             newPos = (player.viewpoint.transform.position + player.viewpoint.transform.forward);
         }

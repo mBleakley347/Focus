@@ -1445,7 +1445,7 @@ GameObject:
   - component: {fileID: 179475057546560625}
   - component: {fileID: 179475057546560630}
   - component: {fileID: 179475057546560631}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Box Top
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2271,6 +2271,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   memoryManager: {fileID: 0}
   dadsgroup: {fileID: 0}
+  remark: {fileID: 0}
+  waittime: 1
+  whiteouttime: 0.2
+  whiteouts: []
 --- !u!1 &179475058137352877
 GameObject:
   m_ObjectHideFlags: 0
