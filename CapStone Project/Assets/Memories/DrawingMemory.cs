@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.Audio;
 
 public class DrawingMemory : MonoBehaviour
@@ -16,10 +17,18 @@ public class DrawingMemory : MonoBehaviour
     public float ditherrate = 0.1f;
     [Header("music sting")]
     public List<int> musicstingtalkindex;
-
+    
     public bool ismusicstingline = false;
     public List<FloatListWrapper> musicstingtimes;
     public List<AudioListWrapper> musicstingclip;
+
+    [Header("transition back")]
+    public AudioClip postMemoryRemark;
+    public float waittime = 1;
+    private float whiteouttime = 1.0f;
+    public List<Image> whiteouts;
+    private bool start = true;
+    private int working = 0;
 
 
     private bool changing = false;
@@ -89,7 +98,7 @@ public class DrawingMemory : MonoBehaviour
         {
             if (SCR_AudioManager.instanceAM.voiceSouce.time >= musicstingtimes[0].myList[0])
             {
-                SCR_AudioManager.instanceAM.voiceSouce.PlayOneShot(musicstingclip[0].myList[0]);
+                SCR_AudioManager.instanceAM.musicSouce.PlayOneShot(musicstingclip[0].myList[0]);
                 musicstingclip[0].myList.RemoveAt(0);
                 musicstingtimes[0].myList.RemoveAt(0);
                 if (musicstingclip[0].myList.Count == 0)
