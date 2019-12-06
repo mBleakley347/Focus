@@ -2795,7 +2795,13 @@ MonoBehaviour:
     - {fileID: 8300000, guid: 80c4336b8c8fdaa479e6d8d429fcb44a, type: 3}
   postMemoryRemark: {fileID: 0}
   waittime: 1
-  whiteouts: []
+  whiteouts:
+  - {fileID: 293217459}
+  - {fileID: 1758121103}
+  - {fileID: 698887215}
+  - {fileID: 239655676}
+  - {fileID: 439926390}
+  - {fileID: 1700195358}
 --- !u!1 &208627481
 GameObject:
   m_ObjectHideFlags: 0
@@ -23104,7 +23110,13 @@ MonoBehaviour:
     - {fileID: 8300000, guid: e40000ec848835849a157ce72dcf1a2e, type: 3}
   postMemoryRemark: {fileID: 0}
   waittime: 1
-  whiteouts: []
+  whiteouts:
+  - {fileID: 293217459}
+  - {fileID: 1758121103}
+  - {fileID: 698887215}
+  - {fileID: 239655676}
+  - {fileID: 439926390}
+  - {fileID: 1700195358}
 --- !u!4 &1494794562 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 487440, guid: 9fc563619a488e547b6dae04097a4879,
@@ -26132,7 +26144,13 @@ MonoBehaviour:
   musicstingclip: []
   postMemoryRemark: {fileID: 0}
   waittime: 1
-  whiteouts: []
+  whiteouts:
+  - {fileID: 293217459}
+  - {fileID: 1758121103}
+  - {fileID: 698887215}
+  - {fileID: 239655676}
+  - {fileID: 439926390}
+  - {fileID: 1700195358}
 --- !u!1001 &1725726995
 PrefabInstance:
   m_ObjectHideFlags: 0
