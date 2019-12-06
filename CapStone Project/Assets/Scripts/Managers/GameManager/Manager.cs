@@ -14,12 +14,16 @@ public class Manager : MonoBehaviour
     public int homeLevel;
     public String homeScene;
     public CursorLockMode cursorMode;
+
     public bool paused = false;
     public bool menuUp = true;
     public bool textUp;
     public bool puzzleOn = false;
     public bool settingsOpen = false;
     public bool inMemory = false;
+    public bool finished;
+    public bool Done;
+
     public AudioClip MenuMusic;
     public AudioClip MainMusic;
     public AudioClip[] Atmos;
@@ -27,9 +31,8 @@ public class Manager : MonoBehaviour
     public Text Mainmenushiz2;
     public Image Mainmenushiz3;
     public int RandomTrack;
-    public bool Done;
     public GameObject focusText;
-    public bool finished;
+    
 
     [SerializeField] private GameObject currentFocus;
     [SerializeField] private GameObject escapeMenu;
@@ -128,10 +131,6 @@ public class Manager : MonoBehaviour
                 escapeMenu.SetActive(false);
                 paused = false;
             }
-        }
-        if (!menuUp)
-        {
-
         }
         if (SCR_AudioManager.instanceAM.voiceSouce.isPlaying == false)
         {
