@@ -24,6 +24,7 @@ public class DrawingMemory : MonoBehaviour
 
     [Header("transition back")]
     public AudioClip postMemoryRemark;
+    public AudioClip postMemoryRemark2;
     public float waittime = 1;
     private float whiteouttime = 1.0f;
     public List<Image> whiteouts;
@@ -210,6 +211,7 @@ public class DrawingMemory : MonoBehaviour
                 
                 if (postMemoryRemark)
                     SCR_AudioManager.instanceAM.voiceSouce.PlayOneShot(postMemoryRemark);
+                StartCoroutine(secondclip(postMemoryRemark.length));
                 //Fade out current music
                 float startVolume = SCR_AudioManager.instanceAM.musicSouce.volume;
 
@@ -254,5 +256,13 @@ public class DrawingMemory : MonoBehaviour
             }
             yield return new WaitForSeconds(whiteouttime);
         }
+    }
+
+    IEnumerator secondclip(float waittime)
+    {
+        new WaitForSeconds(waittime+1);
+        if (postMemoryRemark2)
+            SCR_AudioManager.instanceAM.voiceSouce.PlayOneShot(postMemoryRemark2);
+        yield break;
     }
 }
