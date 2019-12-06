@@ -95,7 +95,7 @@ public class CastPlayer : MonoBehaviour
 
         //Debug.Log(temp); // trying to figure out the sliding and late bouncing
 
-        viewpoint.transform.parent.localPosition = temp;
+        normal.transform.parent.localPosition = temp;
     }
     public void XViewAxis(float i)
     {
