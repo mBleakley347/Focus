@@ -180,6 +180,7 @@ public class CastPlayer : MonoBehaviour
     {
         if (Manager.instance.menuUp)
         {
+            Manager.instance.focusText.active = false;
             return;
         }else
         {
@@ -218,6 +219,7 @@ public class CastPlayer : MonoBehaviour
         }
         if (Manager.instance.paused || Manager.instance.puzzleOn)
         {
+            Manager.instance.focusText.active = false;
             //body.velocity.Set(0,0,0);
             return;
         }

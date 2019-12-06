@@ -54,7 +54,9 @@ public class SCR_BoxPickUp : SCR_PickUpAndTurn
     }
     IEnumerator on()
     {
+        Manager.instance.instructions.SetActive(true);
         yield return new WaitForSeconds(delayTime);
+        Manager.instance.instructions.SetActive(false);
         Manager.instance.menuUp = false;
         Manager.instance.puzzleOn = true;
     }
