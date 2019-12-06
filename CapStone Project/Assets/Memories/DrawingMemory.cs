@@ -40,8 +40,6 @@ public class DrawingMemory : MonoBehaviour
                 if (mat.shader.name == "Custom/Dither") dithermat.Add(mat);
             }
         }
-        
-        SCR_AudioManager.instanceAM.voiceSouce.Play();
     }
 
     // Update is called once per frame
@@ -62,7 +60,6 @@ public class DrawingMemory : MonoBehaviour
                 Waittime = Waittime + Time.deltaTime * 2;
                 if (Waittime > 1)
                 {
-                    Voicepos++;
                     if (musicstingtalkindex.Count > 0)
                     {
                         if (Voicepos == musicstingtalkindex[0] && !ismusicstingline)
@@ -79,9 +76,11 @@ public class DrawingMemory : MonoBehaviour
                             changing = true;
                         }
                     }
+                    Debug.Log("voicepos " + Voicepos);
                     SCR_AudioManager.instanceAM.voiceSouce.clip = VoiceLines[Voicepos];
                     SCR_AudioManager.instanceAM.voiceSouce.Play();
                     Waittime = 0;
+                    Voicepos++;
                 }
             }
         }

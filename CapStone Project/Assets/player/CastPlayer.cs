@@ -35,6 +35,8 @@ public class CastPlayer : MonoBehaviour
 
     [Header("misc")]
     public Rigidbody body;
+    public Camera normal;
+    public Camera memory;
 
     public Camera viewpoint;
 
@@ -206,6 +208,9 @@ public class CastPlayer : MonoBehaviour
                     drop();
                 }
             }
+        } else
+        {
+            Manager.instance.focusText.active = false;
         }
         if (heldobject)
         {
@@ -223,7 +228,7 @@ public class CastPlayer : MonoBehaviour
     {
         RaycastHit hit;
         LayerMask objects = LayerMask.GetMask("Objects");
-        if (Physics.SphereCast(viewpoint.transform.position, 0.2f, viewpoint.transform.forward, out hit, 5, objects))
+        if (Physics.SphereCast(viewpoint.transform.position, 0.2f, viewpoint.transform.forward, out hit, 1.5f, objects))
         {
                 Manager.instance.focusText.active = true;                
         }
@@ -238,7 +243,7 @@ public class CastPlayer : MonoBehaviour
         camTransformY.transform.position = Camera.main.transform.position;
         RaycastHit hit;
         LayerMask objects = LayerMask.GetMask("Objects");
-        if (Physics.SphereCast(viewpoint.transform.position, 0.2f,viewpoint.transform.forward, out hit, 5,objects))
+        if (Physics.SphereCast(viewpoint.transform.position, 0.2f,viewpoint.transform.forward, out hit, 1.5f,objects))
         {
             if (hit.transform.gameObject.GetComponent<SCR_BoxRotator>())
             {
