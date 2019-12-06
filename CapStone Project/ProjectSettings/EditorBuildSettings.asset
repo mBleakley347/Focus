@@ -8,28 +8,31 @@ EditorBuildSettings:
   - enabled: 0
     path: 
     guid: 00000000000000000000000000000000
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Box scene 1.unity
     guid: c311b52b4b094b94bab7f7e4bc23b816
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/HousePacked01.unity
     guid: e817e8744eb710d4181acae482c68bbc
-  - enabled: 1
-    path: Assets/Scenes/HouseUnpacked.unity
-    guid: da89a8b967943fb42b527724833429cf
-  - enabled: 1
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
+  - enabled: 0
     path: Assets/Scenes/Memory01.unity
     guid: a10cd6ce2d103b047826239dff21618b
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Memory02.unity
     guid: 4eb7d3b2a3074624badcf7e22c68e5bf
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/MemoryPuzzleBox.unity
     guid: 32a2a4357bf8e884685ef0a120eeaf67
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Menu.unity
     guid: 36475c3e78abffc4ab0adf68e211755b
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/SCE_Options.unity
     guid: ab42c937bbf11d54a8050e7157cb9d27
+  - enabled: 1
+    path: Assets/Scenes/HouseUnpacked.unity
+    guid: d3aa03322d6601149a3eeeb6cb6dfb67
   m_configObjects: {}

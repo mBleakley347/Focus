@@ -215,7 +215,7 @@ public class DrawingMemory : MonoBehaviour
                 
                 if (postMemoryRemark)
                     SCR_AudioManager.instanceAM.voiceSouce.PlayOneShot(postMemoryRemark);
-                StartCoroutine(secondclip(postMemoryRemark.length));
+                //StartCoroutine(secondclip(7f));
                 //Fade out current music
                 float startVolume = SCR_AudioManager.instanceAM.musicSouce.volume;
 
@@ -258,11 +258,11 @@ public class DrawingMemory : MonoBehaviour
 
                     foreach (GameObject item in Activate)
                     {
-                        item.active = true;
+                        item.SetActive (true);
                     }
                     foreach (GameObject item in Deactivate)
                     {
-                        item.active = false;
+                        item.SetActive(false);
                     }
                     yield break;
                 }
@@ -271,9 +271,9 @@ public class DrawingMemory : MonoBehaviour
         }
     }
 
-    IEnumerator secondclip(float waittime)
+    IEnumerator secondclip(float b)
     {
-        new WaitForSeconds(waittime+1);
+        new WaitForSeconds(b+2);
         if (postMemoryRemark2)
             SCR_AudioManager.instanceAM.voiceSouce.PlayOneShot(postMemoryRemark2);
         yield break;
