@@ -27,9 +27,9 @@ public class Manager : MonoBehaviour
     public Image Mainmenushiz3;
     public int RandomTrack;
     public bool Done;
+    public GameObject focusText;
 
     [SerializeField] private GameObject currentFocus;
-    [SerializeField] private GameObject focusText;
     [SerializeField] private GameObject escapeMenu;
     [SerializeField] private GameObject settingsMenu;
     [SerializeField] private GameObject menu;

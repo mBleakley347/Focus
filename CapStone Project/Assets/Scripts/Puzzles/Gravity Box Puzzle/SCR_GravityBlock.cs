@@ -16,11 +16,10 @@ public class SCR_GravityBlock : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {
-        
+    {        
         if (!Manager.instance.puzzleOn)
         {
-            transform.localPosition = originPos;
+            this.gameObject.transform.localPosition = originPos;
             return;
         }
         

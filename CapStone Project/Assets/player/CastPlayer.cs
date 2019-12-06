@@ -181,6 +181,7 @@ public class CastPlayer : MonoBehaviour
         {
             animator.SetBool("Move", true);
         }
+        checkInteracton();
         if (Input.GetButtonDown("Interact"))
         {
            
@@ -206,13 +207,29 @@ public class CastPlayer : MonoBehaviour
         XViewAxis(Input.GetAxis("Mouse X")*3);
     }
 
+    public void checkInteracton()
+    {
+        RaycastHit hit;
+        LayerMask objects = LayerMask.GetMask("Objects");
+        if (Physics.SphereCast(viewpoint.transform.position, 0.2f, viewpoint.transform.forward, out hit, 5, objects))
+        {
+            
+                Manager.instance.focusText.active = true;
+            
+                
+        }
+        else
+        {
+            Manager.instance.focusText.active = false;
+        }
+    }
     public void pickup()
     {
         camTransformX.transform.position = Camera.main.transform.position;
         camTransformY.transform.position = Camera.main.transform.position;
         RaycastHit hit;
         LayerMask objects = LayerMask.GetMask("Objects");
-        if (Physics.SphereCast(viewpoint.transform.position, 0.2f,viewpoint.transform.forward, out hit, 300,objects))
+        if (Physics.SphereCast(viewpoint.transform.position, 0.2f,viewpoint.transform.forward, out hit, 5,objects))
         {
             if (hit.transform.gameObject.GetComponent<SCR_BoxRotator>())
             {

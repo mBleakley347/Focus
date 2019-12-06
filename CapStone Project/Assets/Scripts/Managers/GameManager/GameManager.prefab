@@ -890,7 +890,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Click to interact
+  m_Text: 'Press E Interact
 
 '
 --- !u!1 &1884089640890655479
@@ -2309,6 +2309,14 @@ MonoBehaviour:
   textUp: 0
   puzzleOn: 0
   settingsOpen: 0
+  MenuMusic: {fileID: 0}
+  MainMusic: {fileID: 0}
+  Atmos: []
+  Mainmenushiz: {fileID: 0}
+  Mainmenushiz2: {fileID: 0}
+  Mainmenushiz3: {fileID: 0}
+  RandomTrack: 0
+  Done: 0
   currentFocus: {fileID: 0}
   focusText: {fileID: 1693082753126103888}
   escapeMenu: {fileID: 6169449694672848065}

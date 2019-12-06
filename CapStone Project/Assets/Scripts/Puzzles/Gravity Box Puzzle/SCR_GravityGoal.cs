@@ -17,6 +17,10 @@ public class SCR_GravityGoal : SCR_PuzzleComponent
     {
         if (complete)
         {
+            if (!Manager.instance.puzzleOn){
+                _scrGravityBlock.originPos = this.transform.localPosition;
+                return;
+            }
             if (_scrGravityBlock.transform.localPosition.x <= transform.localPosition.x - 0.01f || _scrGravityBlock.transform.localPosition.x >= transform.localPosition.x + 0.01f ||
                 _scrGravityBlock.transform.localPosition.y <= transform.localPosition.y - 0.01f || _scrGravityBlock.transform.localPosition.y >= transform.localPosition.y + 0.01f)
             {
