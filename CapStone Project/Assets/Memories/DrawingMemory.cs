@@ -34,6 +34,10 @@ public class DrawingMemory : MonoBehaviour
 
     private bool changing = false;
     private bool changingback = false;
+
+    public GameObject[] Activate;
+    public GameObject[] Deactivate;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -251,6 +255,15 @@ public class DrawingMemory : MonoBehaviour
                     }
                     //memoryManager.SetActive(true);
                     //dadsgroup.SetActive(true);
+
+                    foreach (GameObject item in Activate)
+                    {
+                        item.active = true;
+                    }
+                    foreach (GameObject item in Deactivate)
+                    {
+                        item.active = false;
+                    }
                     yield break;
                 }
             }
