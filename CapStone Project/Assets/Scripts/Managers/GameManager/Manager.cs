@@ -26,7 +26,7 @@ public class Manager : MonoBehaviour
 
     public AudioClip MenuMusic;
     public AudioClip MainMusic;
-    public AudioClip[] Atmos;
+    public AudioClip Atmos;
     public Text Mainmenushiz;
     public Text Mainmenushiz2;
     public Image Mainmenushiz3;
@@ -102,10 +102,10 @@ public class Manager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        RandomTrack = UnityEngine.Random.Range(0, Atmos.Length);
+        //RandomTrack = UnityEngine.Random.Range(0, Atmos.Length);
         Cursor.lockState = CursorLockMode.Confined;
         SCR_AudioManager.instanceAM.musicSouce.clip = MenuMusic;
-        SCR_AudioManager.instanceAM.atmosSouce.clip = Atmos[RandomTrack];
+        SCR_AudioManager.instanceAM.atmosSouce.clip = Atmos;
         SCR_AudioManager.instanceAM.atmosSouce.Play();
         SCR_AudioManager.instanceAM.musicSouce.Play();
     }
@@ -133,12 +133,7 @@ public class Manager : MonoBehaviour
                 paused = false;
             }
         }
-        if (SCR_AudioManager.instanceAM.voiceSouce.isPlaying == false)
-        {
-            RandomTrack = UnityEngine.Random.Range(0, Atmos.Length);
-            SCR_AudioManager.instanceAM.atmosSouce.clip = Atmos[RandomTrack];
-            SCR_AudioManager.instanceAM.atmosSouce.Play();
-        }
+     
     }
 
     public void ChangeFocus(GameObject newObject)
