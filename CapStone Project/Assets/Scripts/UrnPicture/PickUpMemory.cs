@@ -33,6 +33,7 @@ public class PickUpMemory : InteractableObject
 
     IEnumerator WaitForAudio(CastPlayer player)
     {
+        float startVolume = 1;
         for (; ; )
         {
             if (start)
@@ -41,21 +42,20 @@ public class PickUpMemory : InteractableObject
 
                     SCR_AudioManager.instanceAM.voiceSouce.PlayOneShot(remark);
                 //Fade out current music
-                float startVolume = SCR_AudioManager.instanceAM.musicSouce.volume;
-
-                while (SCR_AudioManager.instanceAM.musicSouce.volume > 0)
-                {
-                    SCR_AudioManager.instanceAM.musicSouce.volume -= startVolume * Time.deltaTime / 5.0f;
-
-                    yield return null;
-                }
-
-                SCR_AudioManager.instanceAM.musicSouce.Stop();
-                SCR_AudioManager.instanceAM.musicSouce.volume = startVolume;
+                startVolume = SCR_AudioManager.instanceAM.musicSouce.volume;
 
 
                 start = false;
                 yield return new WaitForSeconds(waittime);
+            }
+            if (SCR_AudioManager.instanceAM.musicSouce.volume > 0)
+            {
+                SCR_AudioManager.instanceAM.musicSouce.volume -= startVolume * Time.deltaTime / whiteouts.Count;
+            }
+            else
+            {
+                SCR_AudioManager.instanceAM.musicSouce.Stop();
+                SCR_AudioManager.instanceAM.musicSouce.volume = startVolume;
             }
             // handle timed transition to black here
             if (working < whiteouts.Count)
@@ -78,7 +78,7 @@ public class PickUpMemory : InteractableObject
                     }
                     memoryManager.SetActive(true);
                     dadsgroup.SetActive(true);
-                    StopCoroutine("WaitForAudio");
+                    yield break;
                 }
             }
             yield return new WaitForSeconds(whiteouttime);

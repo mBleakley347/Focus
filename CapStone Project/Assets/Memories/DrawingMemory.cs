@@ -32,6 +32,7 @@ public class DrawingMemory : MonoBehaviour
 
 
     private bool changing = false;
+    private bool changingback = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -58,9 +59,13 @@ public class DrawingMemory : MonoBehaviour
         {
             Change();
         }
+        if (changingback&&!SCR_AudioManager.instanceAM.voiceSouce.isPlaying&&SCR_AudioManager.instanceAM.voiceSouce.clip == VoiceLines[VoiceLines.Length-1]&&Dadpos==Dads.Length-1)
+        {
+            changeout();
+        }
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            //Change();
+            Debug.Log(Dadpos + " "+SCR_AudioManager.instanceAM.voiceSouce.isPlaying+" "+changingback);
         }
         if (Voicepos < VoiceLines.Length)
         {
@@ -81,6 +86,10 @@ public class DrawingMemory : MonoBehaviour
                     {
                         if (Voicepos == voicefadesynchro[0]&&!changing)
                         {
+                            if (voicefadesynchro.Count == 1)
+                            {
+                                changingback = true;
+                            }
                             voicefadesynchro.RemoveAt(0);
                             changing = true;
                         }
@@ -149,10 +158,37 @@ public class DrawingMemory : MonoBehaviour
         {
             // cleanup and reset
             Dads[Dadpos].SetActive(false);
+            if (Dadpos != Dads.Length)
+            {
+                dithermat = new List<Material>(nextdithermat);
+            }
             Dadpos += 1;
-            dithermat = new List<Material>(nextdithermat);
             nextdithermat = new List<Material>();
             changing = false;
+
+            //Dads[Dadpos].SetActive(false);
+            //Dadpos++;
+            //Dads[Dadpos].SetActive(true);
+        }
+    }
+
+    public void changeout()
+    {
+        // fade the old dad out and the new dad in
+        for( int i = 0; i < dithermat.Count; i++)
+        {
+            //fade the old dad out
+            
+            ditherer(dithermat[i], 0, Mathf.InverseLerp(1,0,dithermat[i].GetFloat("_Transparency"))+(ditherrate*Time.deltaTime));
+        }
+        if (dithermat[0].GetFloat("_Transparency") == 0)
+        {
+            // cleanup and reset
+            Dads[Dadpos].SetActive(false);
+
+            start = true;
+            StartCoroutine(WaitForAudio());
+            changingback = false;
 
             //Dads[Dadpos].SetActive(false);
             //Dadpos++;
@@ -162,5 +198,61 @@ public class DrawingMemory : MonoBehaviour
     private void ditherer(Material a, float b, float c)
     {
         a.SetFloat("_Transparency", Mathf.Lerp(a.GetFloat("_Transparency"), b, c));
+    }
+    
+    IEnumerator WaitForAudio()
+    {
+        for(; ; )
+        {
+            //Debug.Log("test");
+            if (start)
+            {
+                
+                if (postMemoryRemark)
+                    SCR_AudioManager.instanceAM.voiceSouce.PlayOneShot(postMemoryRemark);
+                //Fade out current music
+                float startVolume = SCR_AudioManager.instanceAM.musicSouce.volume;
+
+                while (SCR_AudioManager.instanceAM.musicSouce.volume > 0)
+                {
+                    SCR_AudioManager.instanceAM.musicSouce.volume -= startVolume * Time.deltaTime / 5.0f;
+
+                    yield return null;
+                }
+
+                SCR_AudioManager.instanceAM.musicSouce.Stop();
+                SCR_AudioManager.instanceAM.musicSouce.volume = startVolume;
+                start = false;
+                yield return new WaitForSeconds(waittime);
+            }
+            // handle timed transition to black here
+            if (working < whiteouts.Count)
+            {
+                if (whiteouts.Count != 0)
+                    whiteouts[working]?.CrossFadeAlpha(4.0f, whiteouttime, false);
+                working++;
+            }
+            else
+            {
+                CastPlayer player = GameObject.FindGameObjectWithTag("Player").GetComponent<CastPlayer>();
+
+                player.scale = 1;
+                player.viewpoint = player.normal;
+                player.viewpoint.enabled = true;
+                player.memory.enabled = false;
+                Manager.instance.inMemory = false;
+                if (working >= whiteouts.Count)
+                {
+                    foreach (Image item in whiteouts)
+                    {
+                        item?.CrossFadeAlpha(0.0f, 1.0f, false);
+                    }
+                    //memoryManager.SetActive(true);
+                    //dadsgroup.SetActive(true);
+                    yield break;
+                }
+            }
+            yield return new WaitForSeconds(whiteouttime);
+        }
     }
 }

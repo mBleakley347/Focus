@@ -32,27 +32,31 @@ public class Memory : SCR_Interactable
 
     IEnumerator WaitForAudio()
     {
+        float startVolume = 1;
         for(; ; )
         {
-
             if (start)
             {
                 if (remark)
                     SCR_AudioManager.instanceAM.voiceSouce.PlayOneShot(remark);
+                
+                
                 //Fade out current music
-                float startVolume = SCR_AudioManager.instanceAM.musicSouce.volume;
+                startVolume = SCR_AudioManager.instanceAM.musicSouce.volume;
 
-                while (SCR_AudioManager.instanceAM.musicSouce.volume > 0)
-                {
-                    SCR_AudioManager.instanceAM.musicSouce.volume -= startVolume * Time.deltaTime / 5.0f;
 
-                    yield return null;
-                }
-
-                SCR_AudioManager.instanceAM.musicSouce.Stop();
-                SCR_AudioManager.instanceAM.musicSouce.volume = startVolume;
+                
                 start = false;
                 yield return new WaitForSeconds(waittime);
+            }
+            if (SCR_AudioManager.instanceAM.musicSouce.volume > 0)
+            {
+                SCR_AudioManager.instanceAM.musicSouce.volume -= startVolume * Time.deltaTime / whiteouts.Count;
+            }
+            else
+            {
+                SCR_AudioManager.instanceAM.musicSouce.Stop();
+                SCR_AudioManager.instanceAM.musicSouce.volume = startVolume;
             }
             // handle timed transition to black here
             if (working < whiteouts.Count)
@@ -77,7 +81,7 @@ public class Memory : SCR_Interactable
                     }
                     memoryManager.SetActive(true);
                     dadsgroup.SetActive(true);
-                    StopCoroutine("WaitForAudio");
+                    yield break;
                 }
             }
             yield return new WaitForSeconds(whiteouttime);
