@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -13,7 +13,6 @@ public class SCR_PhotoChange : SCR_PickUpAndTurn
     private float delay;
     public Vector3 nextpos;
     private bool start = false;
-    private bool setUp = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -49,11 +48,25 @@ public class SCR_PhotoChange : SCR_PickUpAndTurn
             }
             return;
         }
-        else if (setUp)
+        else if (active)
         {
-            int temp = Mathf.RoundToInt(Mathf.Repeat(currentPicture + 1, picture.Length));
-            picture[temp].transform.localPosition = Vector3.Lerp(picture[temp].transform.localPosition, nextpos, .1f);
-            picture[currentPicture].transform.localPosition = Vector3.Lerp(picture[currentPicture].transform.localPosition, Vector3.zero, 0.1f);
+            int temp = Mathf.RoundToInt(Mathf.Repeat(currentPicture - 1, picture.Length));
+            for (int i = 0; i < picture.Length; i++)
+            {
+                if (i == temp)
+                {
+                    picture[temp].transform.localPosition = Vector3.Lerp(picture[temp].transform.localPosition, nextpos, .1f);
+                }
+                else if (i == currentPicture)
+                {
+                    picture[currentPicture].transform.localPosition = Vector3.Lerp(picture[currentPicture].transform.localPosition, Vector3.zero, 0.1f);
+                }
+                else
+                {
+                    picture[i].transform.localPosition = Vector3.Lerp(picture[i].transform.localPosition, new Vector3(0, -0.01f, 0), 0.1f);
+                }
+            }
+            
         }
         if (active)
         {
@@ -108,7 +121,7 @@ public class SCR_PhotoChange : SCR_PickUpAndTurn
         start = true;
         yield return new WaitForSeconds(2);
         start = false;
-        setUp = true;
+
     }
     public override void Use(CastPlayer player)
     {
