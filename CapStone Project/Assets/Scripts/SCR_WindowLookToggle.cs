@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class SCR_WindowLookToggle : MonoBehaviour
 {
     public GameObject Pannel;
-    public Text Credits;
+    public GameObject Credits;
     public Image photo1;
     public Image photo2;
     public Image photo3;
@@ -20,7 +20,7 @@ public class SCR_WindowLookToggle : MonoBehaviour
     {
         Pannel.SetActive(true);
         Pannel.GetComponent<Image>().CrossFadeAlpha(0.0f, 0.0f, false);
-        Credits.CrossFadeAlpha(0.0f, 0.0f, false);
+
         photo1.CrossFadeAlpha(0.0f, 0.0f, false);
         photo2.CrossFadeAlpha(0.0f, 0.0f, false);
         photo3.CrossFadeAlpha(0.0f, 0.0f, false);
@@ -34,16 +34,62 @@ public class SCR_WindowLookToggle : MonoBehaviour
     {
         if (!Manager.instance.finished) Manager.instance.finished = true;
         timeskis = timeskis + Time.deltaTime * 2;
-        if(timeskis > 5)
+        if (timeskis > 5)
         {
-            Pannel.GetComponent<Image>().CrossFadeAlpha(5.0f, 4.0f, false);
-            Credits.CrossFadeAlpha(5.0f, 4.0f, false);
-            photo1.CrossFadeAlpha(5.0f, 4.0f, false);
-            photo2.CrossFadeAlpha(5.0f, 4.0f, false);
-            photo3.CrossFadeAlpha(5.0f, 4.0f, false);
-            photo4.CrossFadeAlpha(5.0f, 4.0f, false);
-            photo5.CrossFadeAlpha(5.0f, 4.0f, false);
-            photo6.CrossFadeAlpha(5.0f, 4.0f, false);
+            Pannel.GetComponent<Image>().CrossFadeAlpha(5.0f, 7.0f, false);
+            
+          
         }
+
+        if (timeskis > 11)
+        {
+            Credits.SetActive(true);
+
+
+        }
+        if (timeskis > 12)
+        {
+            Pannel.GetComponent<Image>().CrossFadeAlpha(0.0f, 0.0f, false);
+        }
+
+        if (timeskis > 20)
+        {
+            photo1.CrossFadeAlpha(5.0f, 4.0f, false);
+        }
+        if (timeskis > 25)
+        {
+            photo2.CrossFadeAlpha(5.0f, 4.0f, false);
+        }
+
+        if (timeskis > 30)
+        {
+            photo3.CrossFadeAlpha(5.0f, 4.0f, false);
+            photo1.CrossFadeAlpha(-5.0f, 4.0f, false);
+
+        }
+        if (timeskis > 35)
+        {
+            photo4.CrossFadeAlpha(5.0f, 4.0f, false);
+            photo2.CrossFadeAlpha(-5.0f, 4.0f, false);
+        }
+        if (timeskis > 40)
+        {
+            photo5.CrossFadeAlpha(5.0f, 4.0f, false);
+            photo3.CrossFadeAlpha(-5.0f, 4.0f, false);
+        }
+        if (timeskis > 45)
+        {
+            photo6.CrossFadeAlpha(5.0f, 4.0f, false);
+            photo4.CrossFadeAlpha(-5.0f, 4.0f, false);
+        }
+        if (timeskis > 50)
+        {
+            photo5.CrossFadeAlpha(-5.0f, 4.0f, false);
+        }
+        if (timeskis > 55)
+        {
+            photo6.CrossFadeAlpha(-5.0f, 4.0f, false);
+        }
+
     }
 }
