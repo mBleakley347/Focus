@@ -72,12 +72,14 @@ public class Manager : MonoBehaviour
     public void ResetScene()
     {
         Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
         LoadNextScene(currentScene);
     }
 
     public void MenuScen()
     {
         Cursor.lockState = CursorLockMode.Confined;
+        Cursor.visible = true;
         menuUp = true;
         LoadNextScene(homeScene);
         menu.SetActive(true);
@@ -87,6 +89,7 @@ public class Manager : MonoBehaviour
     public void StartGame()
     {
         Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
         menuUp = false;
         menu.GetComponentInChildren<Text>().CrossFadeAlpha(0.0f, 2.0f, false);
         Mainmenushiz.CrossFadeAlpha(0.0f, 2.0f, false);
@@ -104,6 +107,7 @@ public class Manager : MonoBehaviour
     {
         //RandomTrack = UnityEngine.Random.Range(0, Atmos.Length);
         Cursor.lockState = CursorLockMode.Confined;
+        Cursor.visible = true;
         SCR_AudioManager.instanceAM.musicSouce.clip = MenuMusic;
         SCR_AudioManager.instanceAM.atmosSouce.clip = Atmos;
         SCR_AudioManager.instanceAM.atmosSouce.Play();
@@ -120,6 +124,7 @@ public class Manager : MonoBehaviour
             {
                 Time.timeScale = 0;
                 Cursor.lockState = CursorLockMode.Confined;
+                Cursor.visible = true;
                 AudioListener.pause = true;
                 escapeMenu.SetActive(true);
                 paused = true;
@@ -129,6 +134,7 @@ public class Manager : MonoBehaviour
                 Time.timeScale = 1;
                 AudioListener.pause = false;
                 Cursor.lockState = CursorLockMode.Locked;
+                Cursor.visible = false;
                 escapeMenu.SetActive(false);
                 paused = false;
             }
@@ -157,11 +163,13 @@ public class Manager : MonoBehaviour
         if (!locked)
         {
             Cursor.lockState = CursorLockMode.Confined;
+            Cursor.visible = true;
             cursorMode = CursorLockMode.Confined;
         }
         else
         {
             Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
             cursorMode = CursorLockMode.Locked;
         }
     }
