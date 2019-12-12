@@ -59,6 +59,7 @@ public class Manager : MonoBehaviour
     {
         paused = false;
         inMemory = false;
+        puzzleOn = false;
         Time.timeScale = 1;
         if (nextScene != null)
         {
@@ -143,8 +144,8 @@ public class Manager : MonoBehaviour
             {
                 Time.timeScale = 1;
                 AudioListener.pause = false;
-                Cursor.lockState = CursorLockMode.Locked;
-                Cursor.visible = false;
+                Cursor.lockState = puzzleOn?CursorLockMode.Confined:CursorLockMode.Locked;
+                Cursor.visible = puzzleOn;
                 escapeMenu.SetActive(false);
                 paused = false;
             }

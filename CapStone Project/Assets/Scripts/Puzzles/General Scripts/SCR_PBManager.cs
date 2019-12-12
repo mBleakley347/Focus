@@ -11,6 +11,7 @@ public class SCR_PBManager : MonoBehaviour
     public SCR_PuzzleManager[] puzzles;
     public GameObject lid;
     public AudioSource completionSound;
+    public Memory boxmemory;
     
     private void Awake()
     {
@@ -52,7 +53,15 @@ public class SCR_PBManager : MonoBehaviour
 
     public void Open()
     {
-        lid.transform.localRotation = Quaternion.Lerp(lid.transform.localRotation,Quaternion.Euler(0,0,-90),0.01f );
+        if (Quaternion.Angle(lid.transform.localRotation, Quaternion.Euler(0, 0, -90))<10)
+        {
+            boxmemory.Click(Vector3.zero);
+            Destroy(this);
+        }
+        else
+        {
+            lid.transform.localRotation = Quaternion.Lerp(lid.transform.localRotation,Quaternion.Euler(0,0,-90),0.01f );
+        }
         //lid.transform.Rotate(0,0,90);
         //lid.transform.localPosition = new Vector3(0.5f,1,0);
     }
