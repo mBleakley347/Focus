@@ -32776,6 +32776,11 @@ PrefabInstance:
       propertyPath: m_PlayOnAwake
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 179475057080831493, guid: 095c973117674cf478edd74d3ce6633c,
+        type: 3}
+      propertyPath: turnSpeed
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 2970670311661687790, guid: 095c973117674cf478edd74d3ce6633c, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 095c973117674cf478edd74d3ce6633c, type: 3}
