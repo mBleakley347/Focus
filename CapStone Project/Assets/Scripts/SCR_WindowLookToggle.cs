@@ -13,6 +13,8 @@ public class SCR_WindowLookToggle : MonoBehaviour
     public Image photo4;
     public Image photo5;
     public Image photo6;
+    public Image photo7;
+
     public float timeskis;
 
     // Start is called before the first frame update
@@ -84,6 +86,7 @@ public class SCR_WindowLookToggle : MonoBehaviour
         }
         if (timeskis > 50)
         {
+            photo7.CrossFadeAlpha(5.0f, 4.0f, false);
             photo5.CrossFadeAlpha(-5.0f, 4.0f, false);
         }
         if (timeskis > 55)
@@ -91,5 +94,9 @@ public class SCR_WindowLookToggle : MonoBehaviour
             photo6.CrossFadeAlpha(-5.0f, 4.0f, false);
         }
 
+        if (timeskis > 60)
+        {
+            photo7.CrossFadeAlpha(-5.0f, 4.0f, false);
+        }
     }
 }
