@@ -66,13 +66,22 @@ public class Manager : MonoBehaviour
             ChangeFocus(null);
             if (currentScene != currentScene) previousScene = currentScene;
             currentScene = nextScene;
+            
+            AudioListener.pause = false;
+            SCR_AudioManager.instanceAM.voiceSouce.Stop();
+            SCR_AudioManager.instanceAM.voiceSouce2.Stop();
+            SCR_AudioManager.instanceAM.musicSouce.clip = MenuMusic;
+            SCR_AudioManager.instanceAM.musicSouce.Play();
+            menuUp = true;
+            menu.SetActive(true);
+            
             SceneManager.LoadScene(currentScene);
         }
     }
     public void ResetScene()
     {
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Confined;
+        Cursor.visible = true;
         LoadNextScene(currentScene);
     }
 
@@ -108,9 +117,10 @@ public class Manager : MonoBehaviour
         //RandomTrack = UnityEngine.Random.Range(0, Atmos.Length);
         Cursor.lockState = CursorLockMode.Confined;
         Cursor.visible = true;
+        
         SCR_AudioManager.instanceAM.musicSouce.clip = MenuMusic;
         SCR_AudioManager.instanceAM.atmosSouce.clip = Atmos;
-        SCR_AudioManager.instanceAM.atmosSouce.Play();
+        SCR_AudioManager.instanceAM.atmosSouce.PlayOneShot(Atmos);
         SCR_AudioManager.instanceAM.musicSouce.Play();
     }
 
@@ -231,7 +241,8 @@ public class Manager : MonoBehaviour
        
         Manager.instance.menu.SetActive(false);
         Manager.instance.Playmusic();
-
+        
+        yield break;
     }
 
     public void Playmusic()
